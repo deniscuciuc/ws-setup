@@ -1,0 +1,23 @@
+# Format: name [classic]
+# Development tools
+code classic
+dbeaver-ce classic
+glab
+redisinsight
+
+# Browsers and communication
+bitwarden
+discord
+firefox
+telegram-desktop
+thunderbird
+
+# Productivity and media
+figma-linux
+onlyoffice-desktopeditors
+organize-my-files
+spotify
+steam
+
+# Games
+0ad

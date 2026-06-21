@@ -1,0 +1,74 @@
+# Core CLI and shell tools
+apt-transport-https
+bat
+btop
+build-essential
+ca-certificates
+curl
+fd-find
+fzf
+gh
+git
+gnupg2
+grep
+gzip
+htop
+httpie
+neovim
+ncdu
+openssh-server
+pinentry-curses
+python3-full
+python3-pip
+ripgrep
+software-properties-common
+speedtest-cli
+tmux
+tree
+unzip
+wget
+wl-clipboard
+yq
+zip
+zsh
+
+# Desktop environment and productivity
+libreoffice-help-en-us
+libreoffice-l10n-en-us
+thunderbird-locale-en-us
+ubuntu-desktop
+ubuntu-desktop-minimal
+ubuntu-restricted-addons
+
+# Development runtimes and containers
+aspnetcore-runtime-10.0
+containerd.io
+docker-buildx-plugin
+docker-ce
+docker-ce-cli
+docker-ce-rootless-extras
+docker-compose-plugin
+docker-model-plugin
+dotnet-sdk-10.0
+
+# pyenv build dependencies
+libbz2-dev
+libffi-dev
+liblzma-dev
+libncursesw5-dev
+libreadline-dev
+libsqlite3-dev
+libssl-dev
+libxml2-dev
+libxmlsec1-dev
+llvm
+make
+tk-dev
+xz-utils
+zlib1g-dev
+
+# Uncomment on NVIDIA/CUDA machines only
+# cuda-repo-ubuntu2604-13-3-local
+# cuda-toolkit-13-3
+# nvidia-cuda-toolkit
+# nvidia-driver-595

@@ -3,16 +3,13 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-# Ensure locally installed tools (e.g. chezmoi) are on PATH for validation.
+# The Dockerfile already installs curl/git, but bootstrap.sh should also handle a clean system.
+# Here we run setup.sh directly to test the provisioning logic.
+# Desktop packages are skipped inside Docker because a full desktop environment
+# is not available/needed in a container.
 export PATH="$HOME/.local/bin:$PATH"
-
-# The Dockerfile already installs ansible, but bootstrap.sh should also handle a clean system.
-# Here we run the playbook directly to test the ansible logic.
-# Snap installs and desktop packages are skipped inside Docker because snapd
-# and a full desktop environment are not available/needed in a container.
-ansible-playbook -i inventory/localhost.yml playbook.yml \
-  -e run_snap_installs=false \
-  -e install_desktop_packages=false
+export WS_SETUP_SKIP_DESKTOP=1
+bash setup.sh
 
 # Validate
 ./scripts/validate.sh

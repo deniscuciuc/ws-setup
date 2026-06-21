@@ -1,7 +1,5 @@
 # New Laptop Setup Checklist
 
-Generated after running `ws-setup` on {{ ansible_facts['date_time']['iso8601'] }}.
-
 ## Before provisioning
 - [ ] Back up files not stored in cloud storage.
 - [ ] Create an Ubuntu 26.04 bootable USB.
@@ -12,11 +10,11 @@ Generated after running `ws-setup` on {{ ansible_facts['date_time']['iso8601'] }
 - [ ] Connect the new laptop to the internet.
 - [ ] Open a terminal and run:
       ```bash
-      curl -fsSL {{ ws_setup_raw_url }}/raw/main/bootstrap.sh | bash
+      curl -fsSL -o /tmp/bootstrap.sh https://github.com/deniscuciuc/ws-setup/raw/main/bootstrap.sh
+      bash /tmp/bootstrap.sh
       ```
-      or clone `{{ ws_setup_repo }}` and run `./bootstrap.sh`.
 - [ ] Enter your sudo password when prompted.
-- [ ] Wait for the Ansible playbook to complete.
+- [ ] Wait for the provisioning script to complete.
 
 ## After provisioning
 - [ ] Import your SSH private key from your backup or password manager.
@@ -33,5 +31,5 @@ Generated after running `ws-setup` on {{ ansible_facts['date_time']['iso8601'] }
 - [ ] Reboot the machine.
 
 ## Optional / per machine
-- [ ] Uncomment NVIDIA/CUDA packages in `group_vars/all/apt_packages.yml` and re-run the playbook if the new laptop has an NVIDIA GPU.
+- [ ] Uncomment NVIDIA/CUDA packages in `packages/apt.txt` and re-run the script if the new laptop has an NVIDIA GPU.
 - [ ] Adjust GNOME settings, themes, keyboard shortcuts, and touchpad preferences manually.
