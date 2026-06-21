@@ -3,6 +3,7 @@
   hosts: localhost
   become: true
   gather_facts: true
+  any_errors_fatal: false
 
   pre_tasks:
     - name: Capture current user home directory

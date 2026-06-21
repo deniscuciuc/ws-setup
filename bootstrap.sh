@@ -24,6 +24,7 @@ ensure_dependency git git
 ensure_dependency curl curl
 ensure_dependency python3 python3
 ensure_dependency ansible ansible
+ensure_dependency add-apt-repository software-properties-common
 
 if [ -d "$TARGET_DIR/.git" ]; then
   echo "==> Updating existing ws-setup repo"
