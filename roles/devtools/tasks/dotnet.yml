@@ -10,5 +10,5 @@
     set -o pipefail
     curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 10.0 --install-dir "$HOME/.dotnet"
   args:
-    creates: "{{ ansible_env.HOME }}/.dotnet/dotnet"
+    creates: "{{ user_home }}/.dotnet/dotnet"
   when: dotnet_which.rc != 0

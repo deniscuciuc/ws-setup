@@ -5,33 +5,10 @@
   changed_when: false
   failed_when: false
 
-- name: Install pyenv dependencies
-  ansible.builtin.apt:
-    name:
-      - make
-      - libssl-dev
-      - zlib1g-dev
-      - libbz2-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - wget
-      - curl
-      - llvm
-      - libncursesw5-dev
-      - xz-utils
-      - tk-dev
-      - libxml2-dev
-      - libxmlsec1-dev
-      - libffi-dev
-      - liblzma-dev
-      - git
-    state: present
-  become: yes
-
 - name: Install pyenv
   ansible.builtin.shell: |
     set -o pipefail
-    curl https://pyenv.run | bash
+    curl -fsSL https://pyenv.run | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv"
+    creates: "{{ user_home }}/.pyenv/bin/pyenv"
   when: pyenv_which.rc != 0

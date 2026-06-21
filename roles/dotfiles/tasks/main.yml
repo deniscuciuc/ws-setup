@@ -1,7 +1,7 @@
 ---
 - name: Ensure ~/.local/bin exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.local/bin"
+    path: "{{ user_home }}/.local/bin"
     state: directory
     mode: '0755'
 
@@ -18,7 +18,7 @@
   args:
     creates: "{{ chezmoi_bin_path }}/chezmoi"
   environment:
-    PATH: "{{ ansible_env.PATH | default('') }}:{{ chezmoi_bin_path }}"
+    PATH: "{{ ansible_facts['env']['PATH'] | default('') }}:{{ chezmoi_bin_path }}"
   when: chezmoi_which.rc != 0
 
 - name: Ensure chezmoi is on PATH for this role
@@ -34,6 +34,6 @@
 - name: Initialize and apply dotfiles
   ansible.builtin.command: "{{ chezmoi_cmd }} init --apply {{ dotfiles_repo }}"
   args:
-    creates: "{{ ansible_env.HOME }}/.zshrc"
+    creates: "{{ user_home }}/.local/share/chezmoi"
   environment:
-    PATH: "{{ ansible_env.PATH | default('') }}:{{ chezmoi_bin_path }}"
+    PATH: "{{ ansible_facts['env']['PATH'] | default('') }}:{{ chezmoi_bin_path }}"

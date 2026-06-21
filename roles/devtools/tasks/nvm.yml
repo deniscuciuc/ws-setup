@@ -1,7 +1,7 @@
 ---
 - name: Check if nvm is installed
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    path: "{{ user_home }}/.nvm/nvm.sh"
   register: nvm_script
 
 - name: Install nvm
@@ -9,7 +9,7 @@
     set -o pipefail
     curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    creates: "{{ user_home }}/.nvm/nvm.sh"
   when: not nvm_script.stat.exists
 
 - name: Install latest LTS Node.js
@@ -20,5 +20,5 @@
     nvm use --lts
     nvm alias default lts/*
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
+    creates: "{{ user_home }}/.nvm/versions/node"
   when: not nvm_script.stat.exists

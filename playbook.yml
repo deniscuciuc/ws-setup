@@ -1,13 +1,13 @@
 ---
 - name: Provision Ubuntu 26.04 developer workstation
   hosts: localhost
-  become: yes
-  any_errors_fatal: false
-  gather_facts: false
+  become: true
+  gather_facts: true
 
   pre_tasks:
-    - name: Gather facts as the current user
-      ansible.builtin.setup:
+    - name: Capture current user home directory
+      ansible.builtin.set_fact:
+        user_home: "{{ lookup('env', 'HOME') }}"
       become: false
 
   roles:
