@@ -66,10 +66,21 @@ check_zsh_plugin() {
   fi
 }
 
+check_kitty_default_terminal() {
+  local list_file="$HOME/.config/ubuntu-xdg-terminals.list"
+  if [ -f "$list_file" ] && [ "$(head -n 1 "$list_file")" = "kitty.desktop" ]; then
+    echo "[OK] kitty is set as the default terminal emulator"
+  else
+    echo "[FAIL] kitty is not set as the default terminal emulator"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
 check_command zsh
 check_command git
 check_command chezmoi
 check_command nvim
+check_command kitty
 check_command batcat
 check_command fdfind
 check_command rg
@@ -91,6 +102,8 @@ check_zsh_plugin zsh-history-substring-search
 check_zsh_plugin you-should-use
 
 check_command starship
+
+check_kitty_default_terminal
 
 check_package zsh
 check_package git

@@ -15,3 +15,4 @@ export GH_COPILOT_EXTENSION_VERSION="v1.2.0"    # gh extension release tag, must
 export GITHUB_COPILOT_CLI_VERSION="0.1.36"      # npm package version, no leading 'v'
 
 export STARSHIP_VERSION="1.25.1"                # starship release version, no leading 'v'
+export KITTY_VERSION="0.47.2"                   # kitty release version, no leading 'v'
