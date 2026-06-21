@@ -4,9 +4,14 @@ Ansible playbook to reproduce my Ubuntu 26.04 developer workstation on a new lap
 
 ## Quick start on a fresh machine
 
+Save the bootstrap script and run it from a terminal (so it can read your sudo password if needed):
+
 ```bash
-curl -fsSL https://github.com/deniscuciuc/ws-setup/raw/main/bootstrap.sh | bash
+curl -fsSL -o /tmp/bootstrap.sh https://github.com/deniscuciuc/ws-setup/raw/main/bootstrap.sh
+bash /tmp/bootstrap.sh
 ```
+
+If you prefer to cache sudo first, run `sudo -v` before the script.
 
 ## Manual run
 
