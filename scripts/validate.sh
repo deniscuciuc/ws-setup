@@ -38,6 +38,14 @@ check_command batcat
 check_command fdfind
 check_command rg
 check_command fzf
+check_command node
+check_command npm
+check_command pnpm
+check_command dotnet
+check_command gh
+check_command claude
+check_command codex
+check_command kimi
 
 check_package zsh
 check_package git
@@ -62,6 +70,20 @@ if chezmoi diff >/dev/null 2>&1; then
   echo "[OK] chezmoi diff command succeeded"
 else
   echo "[FAIL] chezmoi diff command failed"
+  ERRORS=$((ERRORS + 1))
+fi
+
+if [ -f "$HOME/.config/kitty/kitty.conf" ]; then
+  echo "[OK] kitty config present"
+else
+  echo "[FAIL] kitty config missing"
+  ERRORS=$((ERRORS + 1))
+fi
+
+if [ -f "$HOME/.config/nvim/init.lua" ]; then
+  echo "[OK] neovim config present"
+else
+  echo "[FAIL] neovim config missing"
   ERRORS=$((ERRORS + 1))
 fi
 
