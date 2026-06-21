@@ -1,8 +1,14 @@
 ---
 - name: Provision Ubuntu 26.04 developer workstation
   hosts: localhost
-  become: true
-  gather_facts: true
+  become: yes
+  any_errors_fatal: false
+  gather_facts: false
+
+  pre_tasks:
+    - name: Gather facts as the current user
+      ansible.builtin.setup:
+      become: false
 
   roles:
     - role: bootstrap

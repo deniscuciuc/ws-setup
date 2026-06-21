@@ -34,6 +34,6 @@
 - name: Initialize and apply dotfiles
   ansible.builtin.command: "{{ chezmoi_cmd }} init --apply {{ dotfiles_repo }}"
   args:
-    creates: "{{ ansible_env.HOME }}/.local/share/chezmoi"
+    creates: "{{ ansible_env.HOME }}/.zshrc"
   environment:
     PATH: "{{ ansible_env.PATH | default('') }}:{{ chezmoi_bin_path }}"
