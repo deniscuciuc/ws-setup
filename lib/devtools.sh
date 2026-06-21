@@ -86,6 +86,12 @@ install_gh_copilot_extension() {
     return 1
   fi
 
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "  -> gh is not authenticated; skipping Copilot extension install."
+    echo "     After setup, run: gh auth login && gh extension install github/gh-copilot --pin $GH_COPILOT_EXTENSION_VERSION"
+    return 0
+  fi
+
   local installed_version
   installed_version="$(gh extension list 2>/dev/null | awk '/github\/gh-copilot/ {print $3}')" || true
 

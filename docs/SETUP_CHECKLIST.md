@@ -21,6 +21,7 @@
 - [ ] Import your GPG key.
 - [ ] Run `gh auth login` and authenticate with GitHub.
 - [ ] Authenticate the AI coding assistants (login/API keys cannot be automated):
+      - `gh auth login` (if the Copilot `gh` extension wasn't installed automatically, also run `gh extension install github/gh-copilot --pin v1.2.0`)
       - `gh copilot explain "hello"` to verify the Copilot extension is signed in
       - `claude` and follow the browser login, or set `ANTHROPIC_API_KEY`
       - `codex` and follow the browser login, or set `OPENAI_API_KEY`
