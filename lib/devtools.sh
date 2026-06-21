@@ -34,24 +34,51 @@ install_node() {
 }
 
 install_pnpm() {
+  if with_nvm corepack pnpm --version 2>/dev/null | grep -qx "$PNPM_VERSION"; then
+    echo "  -> pnpm ${PNPM_VERSION} already active"
+    return 0
+  fi
+
   echo "==> Enabling corepack and installing pnpm ${PNPM_VERSION}"
   with_nvm corepack enable
   with_nvm corepack prepare "pnpm@${PNPM_VERSION}" --activate
   echo "==> pnpm ${PNPM_VERSION} installed"
 }
 
+npm_package_is_installed() {
+  local name="$1"
+  local version="$2"
+  local output
+  output="$(with_nvm npm list -g --depth=0 "$name" 2>/dev/null)" || return 1
+  echo "$output" | grep -q "$version"
+}
+
 install_npm_global() {
   local package_spec="$1"
+  local package_name="${package_spec%@*}"
+  local package_version="${package_spec##*@}"
+
+  if npm_package_is_installed "$package_name" "$package_version"; then
+    echo "  -> ${package_spec} already installed"
+    return 0
+  fi
+
   echo "==> Installing ${package_spec}"
   with_nvm npm install -g "$package_spec"
 }
 
 install_gh_copilot_extension() {
   echo "==> Installing gh copilot extension"
+
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "ERROR: gh CLI is required but not installed" >&2
+    return 1
+  fi
+
   if gh extension list 2>/dev/null | grep -q 'gh-copilot'; then
     echo "  -> gh copilot extension already installed"
   else
-    gh extension install github/gh-copilot --pin "$GH_COPILOT_VERSION"
+    gh extension install github/gh-copilot --pin "$GH_COPILOT_EXTENSION_VERSION"
   fi
   echo "==> gh copilot extension installed"
 }
