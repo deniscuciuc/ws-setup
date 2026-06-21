@@ -1,0 +1,39 @@
+---
+- name: Ensure ~/.local/bin exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Check if chezmoi is installed
+  ansible.builtin.command: which chezmoi
+  register: chezmoi_which
+  changed_when: false
+  failed_when: false
+
+- name: Download and install chezmoi
+  ansible.builtin.shell: |
+    set -o pipefail
+    sh -c "$(curl -fsLS {{ chezmoi_install_url }})" -- -b {{ chezmoi_bin_path }}
+  args:
+    creates: "{{ chezmoi_bin_path }}/chezmoi"
+  environment:
+    PATH: "{{ ansible_env.PATH | default('') }}:{{ chezmoi_bin_path }}"
+  when: chezmoi_which.rc != 0
+
+- name: Ensure chezmoi is on PATH for this role
+  ansible.builtin.set_fact:
+    chezmoi_cmd: "{{ chezmoi_bin_path }}/chezmoi"
+  when: chezmoi_which.rc != 0
+
+- name: Use existing chezmoi binary
+  ansible.builtin.set_fact:
+    chezmoi_cmd: "chezmoi"
+  when: chezmoi_which.rc == 0
+
+- name: Initialize and apply dotfiles
+  ansible.builtin.command: "{{ chezmoi_cmd }} init --apply {{ dotfiles_repo }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.zshrc"
+  environment:
+    PATH: "{{ ansible_env.PATH | default('') }}:{{ chezmoi_bin_path }}"
