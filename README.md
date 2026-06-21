@@ -23,7 +23,7 @@ cd ~/.local/share/ws-setup
 2. Installs curated apt packages (including Docker repo setup).
 3. Installs curated snap packages.
 4. Installs chezmoi and applies `deniscuciuc/dotfiles`.
-5. Installs developer tools (nvm, pyenv, .NET SDK).
+5. Installs developer tools (nvm, Node, pnpm) and AI coding assistants (GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, Kimi Code CLI).
 6. Writes `~/Desktop/SETUP_CHECKLIST.md` with manual post-install steps.
 
 ## File layout
@@ -35,6 +35,7 @@ ws-setup/
 ├── lib/                  # Modular setup steps
 │   ├── apt.sh
 │   ├── snap.sh
+│   ├── versions.sh
 │   ├── dotfiles.sh
 │   ├── devtools.sh
 │   └── checklist.sh
@@ -62,3 +63,5 @@ docker run --rm ws-setup-test
 - Edit `packages/apt.txt` to change apt packages.
 - Edit `packages/snap.txt` to change snaps.
 - Uncomment NVIDIA/CUDA lines in `packages/apt.txt` for NVIDIA GPUs.
+- Edit `lib/versions.sh` to pin versions of nvm, Node, pnpm, the GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, or Kimi Code CLI.
+- Kitty and neovim configs live in the `deniscuciuc/dotfiles` chezmoi repository; update them there and re-run `setup.sh` to apply.
