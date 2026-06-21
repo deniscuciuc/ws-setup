@@ -44,8 +44,12 @@ check_package git
 check_package neovim
 check_package bat
 
-check_snap code
-check_snap firefox
+if command -v snap >/dev/null 2>&1; then
+  check_snap code
+  check_snap firefox
+else
+  echo "[SKIP] snap not available, skipping snap package checks"
+fi
 
 if chezmoi source-path >/dev/null 2>&1; then
   echo "[OK] chezmoi source path resolved"

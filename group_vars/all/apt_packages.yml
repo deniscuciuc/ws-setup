@@ -1,6 +1,6 @@
 ---
 # Core CLI and shell tools
-apt_packages:
+apt_packages_core:
   - apt-transport-https
   - bat
   - btop
@@ -34,7 +34,8 @@ apt_packages:
   - zip
   - zsh
 
-  # Desktop environment and productivity
+# Desktop environment and productivity
+apt_packages_desktop:
   - libreoffice-help-en-us
   - libreoffice-l10n-en-us
   - thunderbird-locale-en-us
@@ -42,7 +43,8 @@ apt_packages:
   - ubuntu-desktop-minimal
   - ubuntu-restricted-addons
 
-  # Development runtimes and containers
+# Development runtimes and containers
+apt_packages_dev:
   - aspnetcore-runtime-10.0
   - containerd.io
   - docker-buildx-plugin
@@ -53,7 +55,8 @@ apt_packages:
   - docker-model-plugin
   - dotnet-sdk-10.0
 
-  # pyenv build dependencies
+# pyenv build dependencies
+apt_packages_pyenv:
   - libbz2-dev
   - libffi-dev
   - liblzma-dev
@@ -69,8 +72,12 @@ apt_packages:
   - xz-utils
   - zlib1g-dev
 
-  # Uncomment on NVIDIA/CUDA machines only
-  # - cuda-repo-ubuntu2604-13-3-local
-  # - cuda-toolkit-13-3
-  # - nvidia-cuda-toolkit
-  # - nvidia-driver-595
+# Full package list used by default
+apt_packages: "{{ apt_packages_core + apt_packages_desktop + apt_packages_dev + apt_packages_pyenv }}"
+
+# Uncomment on NVIDIA/CUDA machines only
+# nvidia_packages:
+#   - cuda-repo-ubuntu2604-13-3-local
+#   - cuda-toolkit-13-3
+#   - nvidia-cuda-toolkit
+#   - nvidia-driver-595

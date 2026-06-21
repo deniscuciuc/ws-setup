@@ -14,6 +14,7 @@
     - role: bootstrap
     - role: packages_apt
     - role: packages_snap
+      when: run_snap_installs | default(true) | bool
     - role: dotfiles
       become: false
     - role: devtools
