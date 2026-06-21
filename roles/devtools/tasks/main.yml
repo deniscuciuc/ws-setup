@@ -1,0 +1,12 @@
+---
+- name: Include nvm tasks
+  ansible.builtin.include_tasks: nvm.yml
+  when: install_nvm | default(true) | bool
+
+- name: Include pyenv tasks
+  ansible.builtin.include_tasks: pyenv.yml
+  when: install_pyenv | default(true) | bool
+
+- name: Include dotnet tasks
+  ansible.builtin.include_tasks: dotnet.yml
+  when: install_dotnet | default(true) | bool
