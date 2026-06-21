@@ -9,12 +9,17 @@ ensure_dependency() {
   local pkg="${2:-$1}"
   if ! command -v "$cmd" >/dev/null 2>&1; then
     echo "Installing $pkg..."
-    sudo apt-get update
     sudo apt-get install -y "$pkg"
   fi
 }
 
 echo "==> Bootstrapping workstation setup"
+
+# Update apt cache once before checking for dependencies
+if ! command -v ansible >/dev/null 2>&1 || ! command -v git >/dev/null 2>&1 || ! command -v curl >/dev/null 2>&1 || ! command -v python3 >/dev/null 2>&1; then
+  sudo apt-get update
+fi
+
 ensure_dependency git git
 ensure_dependency curl curl
 ensure_dependency python3 python3

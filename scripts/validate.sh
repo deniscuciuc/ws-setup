@@ -13,7 +13,7 @@ check_command() {
 }
 
 check_package() {
-  if dpkg -l "$1" >/dev/null 2>&1; then
+  if dpkg-query -W -f='${Status}' "$1" 2>/dev/null | grep -q "install ok installed"; then
     echo "[OK] apt package $1 installed"
   else
     echo "[FAIL] apt package $1 not installed"
@@ -47,10 +47,17 @@ check_package bat
 check_snap code
 check_snap firefox
 
-if chezmoi diff >/dev/null 2>&1; then
-  echo "[OK] chezmoi diff succeeded"
+if chezmoi source-path >/dev/null 2>&1; then
+  echo "[OK] chezmoi source path resolved"
 else
-  echo "[FAIL] chezmoi diff failed"
+  echo "[FAIL] chezmoi source path not resolved"
+  ERRORS=$((ERRORS + 1))
+fi
+
+if chezmoi diff >/dev/null 2>&1; then
+  echo "[OK] chezmoi diff command succeeded"
+else
+  echo "[FAIL] chezmoi diff command failed"
   ERRORS=$((ERRORS + 1))
 fi
 
