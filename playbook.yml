@@ -1,9 +1,8 @@
 ---
 - name: Provision Ubuntu 26.04 developer workstation
   hosts: localhost
-  become: yes
-  any_errors_fatal: false
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   roles:
     - role: bootstrap

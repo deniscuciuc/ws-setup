@@ -11,7 +11,6 @@ apt_packages:
   - fzf
   - gh
   - git
-  - gnupg
   - gnupg2
   - grep
   - gzip

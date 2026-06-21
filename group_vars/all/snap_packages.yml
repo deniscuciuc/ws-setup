@@ -1,17 +1,24 @@
 ---
 snap_packages:
-  - { name: 0ad, classic: false }
-  - { name: bitwarden, classic: false }
+  # Development tools
   - { name: code, classic: true }
   - { name: dbeaver-ce, classic: true }
-  - { name: discord, classic: false }
-  - { name: figma-linux, classic: false }
-  - { name: firefox, classic: false }
   - { name: glab, classic: false }
-  - { name: onlyoffice-desktopeditors, classic: false }
-  - { name: organize-my-files, classic: false }
   - { name: redisinsight, classic: false }
-  - { name: spotify, classic: false }
-  - { name: steam, classic: false }
+
+  # Browsers and communication
+  - { name: bitwarden, classic: false }
+  - { name: discord, classic: false }
+  - { name: firefox, classic: false }
   - { name: telegram-desktop, classic: false }
   - { name: thunderbird, classic: false }
+
+  # Productivity and media
+  - { name: figma-linux, classic: false }
+  - { name: onlyoffice-desktopeditors, classic: false }
+  - { name: organize-my-files, classic: false }
+  - { name: spotify, classic: false }
+  - { name: steam, classic: false }
+
+  # Games
+  - { name: 0ad, classic: false }
