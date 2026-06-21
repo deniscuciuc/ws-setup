@@ -4,6 +4,22 @@ set -euo pipefail
 REPO_URL="https://github.com/deniscuciuc/ws-setup.git"
 TARGET_DIR="${HOME}/.local/share/ws-setup"
 
+SUDO_PASSWORD=""
+
+read_sudo_password() {
+  if [ ! -r /dev/tty ] || [ ! -w /dev/tty ]; then
+    echo "ERROR: No TTY available to read sudo password." >&2
+    echo "Please run 'sudo -v' first to cache credentials, then re-run this script." >&2
+    exit 1
+  fi
+
+  stty -echo </dev/tty
+  printf "sudo password: " >/dev/tty
+  read -r SUDO_PASSWORD </dev/tty
+  stty echo </dev/tty
+  echo >/dev/tty
+}
+
 ensure_sudo() {
   # Check if sudo credentials are already cached
   if sudo -n true 2>/dev/null; then
@@ -11,22 +27,15 @@ ensure_sudo() {
   fi
 
   echo "==> sudo password required" >&2
+  read_sudo_password
+}
 
-  if [ ! -r /dev/tty ] || [ ! -w /dev/tty ]; then
-    echo "ERROR: No TTY available to read sudo password." >&2
-    echo "Please run 'sudo -v' first to cache credentials, then re-run this script." >&2
-    exit 1
+run_sudo() {
+  if [ -n "$SUDO_PASSWORD" ]; then
+    echo "$SUDO_PASSWORD" | sudo -S "$@"
+  else
+    sudo "$@"
   fi
-
-  # Read password without echo, even when stdin is a pipe
-  local password
-  stty -echo </dev/tty
-  printf "Password: " >/dev/tty
-  read -r password </dev/tty
-  stty echo </dev/tty
-  echo >/dev/tty
-
-  echo "$password" | sudo -S -v
 }
 
 ensure_dependency() {
@@ -34,18 +43,18 @@ ensure_dependency() {
   local pkg="${2:-$1}"
   if ! command -v "$cmd" >/dev/null 2>&1; then
     echo "Installing $pkg..."
-    sudo apt-get install -y "$pkg"
+    run_sudo apt-get install -y "$pkg"
   fi
 }
 
 echo "==> Bootstrapping workstation setup"
 
-# Cache sudo credentials first so subsequent sudo calls and Ansible don't prompt
+# Obtain sudo access first; cache it and/or remember the password for Ansible
 ensure_sudo
 
 # Update apt cache once before checking for dependencies
 if ! command -v ansible >/dev/null 2>&1 || ! command -v git >/dev/null 2>&1 || ! command -v curl >/dev/null 2>&1 || ! command -v python3 >/dev/null 2>&1; then
-  sudo apt-get update
+  run_sudo apt-get update
 fi
 
 ensure_dependency git git
@@ -65,6 +74,11 @@ fi
 
 cd "$TARGET_DIR"
 echo "==> Running Ansible playbook"
+
+if [ -n "$SUDO_PASSWORD" ]; then
+  export ANSIBLE_BECOME_PASS="$SUDO_PASSWORD"
+fi
+
 ansible-playbook -i inventory/localhost.yml playbook.yml
 
 echo "==> Done"
