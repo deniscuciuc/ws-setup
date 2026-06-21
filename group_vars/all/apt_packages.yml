@@ -53,6 +53,22 @@ apt_packages:
   - docker-model-plugin
   - dotnet-sdk-10.0
 
+  # pyenv build dependencies
+  - libbz2-dev
+  - libffi-dev
+  - liblzma-dev
+  - libncursesw5-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - libssl-dev
+  - libxml2-dev
+  - libxmlsec1-dev
+  - llvm
+  - make
+  - tk-dev
+  - xz-utils
+  - zlib1g-dev
+
   # Uncomment on NVIDIA/CUDA machines only
   # - cuda-repo-ubuntu2604-13-3-local
   # - cuda-toolkit-13-3

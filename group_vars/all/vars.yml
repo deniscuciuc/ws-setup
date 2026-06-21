@@ -11,4 +11,5 @@ install_dotnet: true
 
 # Paths
 ws_setup_repo: "https://github.com/deniscuciuc/ws-setup.git"
+ws_setup_raw_url: "https://github.com/deniscuciuc/ws-setup"
 ws_setup_dir: "{{ ansible_env.HOME }}/.local/share/ws-setup"
