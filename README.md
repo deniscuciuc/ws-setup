@@ -63,5 +63,5 @@ docker run --rm ws-setup-test
 - Edit `packages/apt.txt` to change apt packages.
 - Edit `packages/snap.txt` to change snaps.
 - Uncomment NVIDIA/CUDA lines in `packages/apt.txt` for NVIDIA GPUs.
-- Edit `lib/versions.sh` to pin versions of nvm, Node, pnpm, the GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, or Kimi Code CLI.
+- Edit `lib/versions.sh` to pin versions of nvm, Node, pnpm, corepack, the GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, or Kimi Code CLI.
 - Kitty and neovim configs live in the `deniscuciuc/dotfiles` chezmoi repository; update them there and re-run `setup.sh` to apply.

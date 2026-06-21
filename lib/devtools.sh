@@ -49,7 +49,8 @@ install_pnpm() {
     return 0
   fi
 
-  echo "==> Enabling corepack and installing pnpm ${PNPM_VERSION}"
+  echo "==> Installing corepack ${COREPACK_VERSION} and pnpm ${PNPM_VERSION}"
+  with_nvm npm install -g "corepack@${COREPACK_VERSION}"
   with_nvm corepack enable
   with_nvm corepack prepare "pnpm@${PNPM_VERSION}" --activate
   echo "==> pnpm ${PNPM_VERSION} installed"
