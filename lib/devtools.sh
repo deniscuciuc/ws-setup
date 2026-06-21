@@ -26,6 +26,15 @@ install_node() {
     curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_INSTALL_VERSION}/install.sh" | bash
   fi
 
+  if [ -d "$HOME/.nvm/versions/node/${NODE_VERSION}" ]; then
+    local current
+    current="$(with_nvm nvm current 2>/dev/null)"
+    if [ "$current" = "$NODE_VERSION" ]; then
+      echo "  -> Node ${NODE_VERSION} already installed and default"
+      return 0
+    fi
+  fi
+
   with_nvm nvm install "$NODE_VERSION"
   with_nvm nvm use "$NODE_VERSION"
   with_nvm nvm alias default "$NODE_VERSION"
@@ -50,7 +59,7 @@ npm_package_is_installed() {
   local version="$2"
   local output
   output="$(with_nvm npm list -g --depth=0 "$name" 2>/dev/null)" || return 1
-  echo "$output" | grep -q "$version"
+  echo "$output" | grep -Fq "${name}@${version}"
 }
 
 install_npm_global() {
@@ -75,11 +84,16 @@ install_gh_copilot_extension() {
     return 1
   fi
 
-  if gh extension list 2>/dev/null | grep -q 'gh-copilot'; then
-    echo "  -> gh copilot extension already installed"
-  else
-    gh extension install github/gh-copilot --pin "$GH_COPILOT_EXTENSION_VERSION"
+  local installed_version
+  installed_version="$(gh extension list 2>/dev/null | awk '/github\/gh-copilot/ {print $3}')" || true
+
+  if [ "$installed_version" = "$GH_COPILOT_EXTENSION_VERSION" ]; then
+    echo "  -> gh copilot extension ${GH_COPILOT_EXTENSION_VERSION} already installed"
+    return 0
   fi
+
+  [ -n "$installed_version" ] && gh extension remove github/gh-copilot
+  gh extension install github/gh-copilot --pin "$GH_COPILOT_EXTENSION_VERSION"
   echo "==> gh copilot extension installed"
 }
 
