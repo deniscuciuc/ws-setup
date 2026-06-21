@@ -71,7 +71,13 @@ fi
 cd "$TARGET_DIR"
 echo "==> Running Ansible playbook"
 
-export ANSIBLE_BECOME_PASS="$SUDO_PASSWORD"
-ansible-playbook -i inventory/localhost.yml playbook.yml
+# Pass the sudo password to Ansible via a temporary extra-vars file.
+# Environment-variable approaches do not work reliably with the local connection.
+BECOME_PASS_FILE="$(mktemp)"
+trap 'rm -f "$BECOME_PASS_FILE"' EXIT
+printf 'ansible_become_password: "%s"\n' "$SUDO_PASSWORD" > "$BECOME_PASS_FILE"
+chmod 600 "$BECOME_PASS_FILE"
+
+ansible-playbook -i inventory/localhost.yml playbook.yml -e "@$BECOME_PASS_FILE"
 
 echo "==> Done"
