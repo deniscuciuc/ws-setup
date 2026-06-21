@@ -23,8 +23,9 @@ cd ~/.local/share/ws-setup
 2. Installs curated apt packages (including Docker repo setup).
 3. Installs curated snap packages.
 4. Installs chezmoi and applies `deniscuciuc/dotfiles`.
-5. Installs developer tools (nvm, Node, pnpm) and AI coding assistants (GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, Kimi Code CLI).
-6. Writes `~/Desktop/SETUP_CHECKLIST.md` with manual post-install steps.
+5. Installs and configures zsh: Oh My Zsh, custom plugins, Starship prompt, and sets zsh as the default login shell.
+6. Installs developer tools (nvm, Node, pnpm) and AI coding assistants (GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, Kimi Code CLI).
+7. Writes `~/Desktop/SETUP_CHECKLIST.md` with manual post-install steps.
 
 ## File layout
 
@@ -37,6 +38,7 @@ ws-setup/
 │   ├── snap.sh
 │   ├── versions.sh
 │   ├── dotfiles.sh
+│   ├── zsh.sh
 │   ├── devtools.sh
 │   └── checklist.sh
 ├── packages/             # Package lists
@@ -63,5 +65,5 @@ docker run --rm ws-setup-test
 - Edit `packages/apt.txt` to change apt packages.
 - Edit `packages/snap.txt` to change snaps.
 - Uncomment NVIDIA/CUDA lines in `packages/apt.txt` for NVIDIA GPUs.
-- Edit `lib/versions.sh` to pin versions of nvm, Node, pnpm, corepack, the GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, or Kimi Code CLI.
+- Edit `lib/versions.sh` to pin versions of nvm, Node, pnpm, corepack, the GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, Kimi Code CLI, or Starship.
 - Kitty and neovim configs live in the `deniscuciuc/dotfiles` chezmoi repository; update them there and re-run `setup.sh` to apply.

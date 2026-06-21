@@ -13,3 +13,5 @@ export KIMI_CODE_VERSION="0.18.0"               # npm package version, no leadin
 
 export GH_COPILOT_EXTENSION_VERSION="v1.2.0"    # gh extension release tag, must include leading 'v'
 export GITHUB_COPILOT_CLI_VERSION="0.1.36"      # npm package version, no leading 'v'
+
+export STARSHIP_VERSION="1.25.1"                # starship release version, no leading 'v'

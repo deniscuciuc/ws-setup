@@ -37,7 +37,7 @@
 - [ ] Sign into communication apps: Discord, Telegram, Thunderbird.
 - [ ] Sign into productivity apps: Spotify, Figma, OnlyOffice.
 - [ ] Install any paid/proprietary software not covered by apt/snap.
-- [ ] Verify zsh is the default shell: `chsh -s $(which zsh)`.
+- [ ] Log out and back in (or reboot) so zsh becomes the active login shell.
 - [ ] Run `chezmoi diff` to confirm dotfiles are applied.
 - [ ] Reboot the machine.
 

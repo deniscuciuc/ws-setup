@@ -37,6 +37,35 @@ check_snap() {
   fi
 }
 
+check_default_shell_zsh() {
+  local current_shell
+  current_shell="$(getent passwd "$(whoami)" | cut -d: -f7)"
+  if [ "$current_shell" = "$(command -v zsh)" ]; then
+    echo "[OK] zsh is the default login shell"
+  else
+    echo "[FAIL] zsh is not the default login shell (current: $current_shell)"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
+check_ohmyzsh() {
+  if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+    echo "[OK] oh-my-zsh installed"
+  else
+    echo "[FAIL] oh-my-zsh not installed"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
+check_zsh_plugin() {
+  if [ -d "$HOME/.oh-my-zsh/custom/plugins/$1" ]; then
+    echo "[OK] zsh plugin $1 installed"
+  else
+    echo "[FAIL] zsh plugin $1 not installed"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
 check_command zsh
 check_command git
 check_command chezmoi
@@ -53,6 +82,15 @@ check_command gh
 check_command claude
 check_command codex
 check_command kimi
+
+check_default_shell_zsh
+check_ohmyzsh
+check_zsh_plugin zsh-autosuggestions
+check_zsh_plugin zsh-syntax-highlighting
+check_zsh_plugin zsh-history-substring-search
+check_zsh_plugin you-should-use
+
+check_command starship
 
 check_package zsh
 check_package git
