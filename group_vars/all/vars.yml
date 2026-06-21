@@ -1,0 +1,14 @@
+---
+# Repository and tooling constants
+dotfiles_repo: "deniscuciuc"
+chezmoi_install_url: "https://get.chezmoi.io"
+chezmoi_bin_path: "{{ ansible_env.HOME }}/.local/bin"
+
+# Installation flags (can be overridden per run)
+install_nvm: true
+install_pyenv: true
+install_dotnet: true
+
+# Paths
+ws_setup_repo: "https://github.com/deniscuciuc/ws-setup.git"
+ws_setup_dir: "{{ ansible_env.HOME }}/.local/share/ws-setup"
