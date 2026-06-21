@@ -13,6 +13,7 @@ with_nvm() {
     export NVM_DIR="$HOME/.nvm"
     # shellcheck source=/dev/null
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm use "$NODE_VERSION" >/dev/null 2>&1 || true
     "$@"
   )
 }

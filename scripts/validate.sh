@@ -5,6 +5,7 @@ set -euo pipefail
 if [ -s "$HOME/.nvm/nvm.sh" ]; then
   # shellcheck source=/dev/null
   \. "$HOME/.nvm/nvm.sh"
+  nvm use v26.3.0 >/dev/null 2>&1 || true
 fi
 
 ERRORS=0
