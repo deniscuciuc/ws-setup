@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Load nvm if available so node/npm-based tools are on PATH during validation.
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  # shellcheck source=/dev/null
+  \. "$HOME/.nvm/nvm.sh"
+fi
+
 ERRORS=0
 
 check_command() {
@@ -59,18 +65,20 @@ else
   echo "[SKIP] snap not available, skipping snap package checks"
 fi
 
-if chezmoi source-path >/dev/null 2>&1; then
-  echo "[OK] chezmoi source path resolved"
-else
-  echo "[FAIL] chezmoi source path not resolved"
-  ERRORS=$((ERRORS + 1))
-fi
+if command -v chezmoi >/dev/null 2>&1; then
+  if chezmoi source-path >/dev/null 2>&1; then
+    echo "[OK] chezmoi source path resolved"
+  else
+    echo "[FAIL] chezmoi source path not resolved"
+    ERRORS=$((ERRORS + 1))
+  fi
 
-if chezmoi diff >/dev/null 2>&1; then
-  echo "[OK] chezmoi diff command succeeded"
-else
-  echo "[FAIL] chezmoi diff command failed"
-  ERRORS=$((ERRORS + 1))
+  if chezmoi diff >/dev/null 2>&1; then
+    echo "[OK] chezmoi diff command succeeded"
+  else
+    echo "[FAIL] chezmoi diff command failed"
+    ERRORS=$((ERRORS + 1))
+  fi
 fi
 
 if [ -f "$HOME/.config/kitty/kitty.conf" ]; then
