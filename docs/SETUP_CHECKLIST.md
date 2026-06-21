@@ -20,6 +20,16 @@
 - [ ] Import your SSH private key from your backup or password manager.
 - [ ] Import your GPG key.
 - [ ] Run `gh auth login` and authenticate with GitHub.
+- [ ] Authenticate the AI coding assistants (login/API keys cannot be automated):
+      - `gh copilot explain "hello"` to verify the Copilot extension is signed in
+      - `claude` and follow the browser login, or set `ANTHROPIC_API_KEY`
+      - `codex` and follow the browser login, or set `OPENAI_API_KEY`
+      - `kimi` then run `/login` in the TUI, or set a Moonshot API key
+- [ ] Create `~/.config/copilot/deepseek.env` if you use the Copilot DeepSeek helper in `.zshrc`.
+- [ ] Verify core developer runtimes:
+      - `node -v` should print `v26.3.0`
+      - `pnpm -v` should print `11.5.2`
+      - `dotnet --version` should print `10.0.109`
 - [ ] Open Firefox/Chrome and sign in to sync bookmarks, passwords, and extensions.
 - [ ] Sign into the Bitwarden browser extension.
 - [ ] Configure Syncthing and pair it with your other devices.
