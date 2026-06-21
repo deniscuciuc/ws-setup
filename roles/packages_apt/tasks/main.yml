@@ -30,21 +30,11 @@
     state: present
     filename: docker
 
-- name: Install core apt packages
+- name: Install curated apt packages
   ansible.builtin.apt:
-    name: "{{ apt_packages_core + apt_packages_dev + apt_packages_pyenv }}"
+    name: "{{ apt_packages }}"
     state: present
-  register: apt_core_install_result
+  register: apt_install_result
   retries: 3
   delay: 10
-  until: apt_core_install_result is succeeded
-
-- name: Install desktop apt packages
-  ansible.builtin.apt:
-    name: "{{ apt_packages_desktop }}"
-    state: present
-  register: apt_desktop_install_result
-  retries: 3
-  delay: 10
-  until: apt_desktop_install_result is succeeded
-  when: install_desktop_packages | default(true) | bool
+  until: apt_install_result is succeeded

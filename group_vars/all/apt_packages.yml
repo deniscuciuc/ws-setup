@@ -72,8 +72,8 @@ apt_packages_pyenv:
   - xz-utils
   - zlib1g-dev
 
-# Full package list used by default
-apt_packages: "{{ apt_packages_core + apt_packages_desktop + apt_packages_dev + apt_packages_pyenv }}"
+# Full package list used by default (desktop packages can be skipped with install_desktop_packages=false)
+apt_packages: "{{ apt_packages_core + apt_packages_dev + apt_packages_pyenv + (apt_packages_desktop if install_desktop_packages | default(true) | bool else []) }}"
 
 # Uncomment on NVIDIA/CUDA machines only
 # nvidia_packages:
