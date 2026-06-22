@@ -27,11 +27,32 @@ install_kitty() {
   fi
 
   # Expose the desktop entry so xdg-terminal-exec can find it.
+  # Use absolute paths in TryExec/Exec so it works even when ~/.local/bin is not
+  # on PATH in the GNOME session.
   mkdir -p "$HOME/.local/share/applications"
-  if [ ! -e "$HOME/.local/share/applications/kitty.desktop" ]; then
-    ln -s "$HOME/.local/kitty.app/share/applications/kitty.desktop" \
-          "$HOME/.local/share/applications/kitty.desktop"
+  local kitty_desktop="$HOME/.local/share/applications/kitty.desktop"
+  if [ -L "$kitty_desktop" ]; then
+    rm "$kitty_desktop"
   fi
+  cat > "$kitty_desktop" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty
+GenericName=Terminal emulator
+Comment=Fast, feature-rich, GPU based terminal
+TryExec=$HOME/.local/kitty.app/bin/kitty
+StartupNotify=true
+Exec=$HOME/.local/kitty.app/bin/kitty
+Icon=$HOME/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png
+Categories=System;TerminalEmulator;
+X-TerminalArgExec=--
+X-TerminalArgTitle=--title
+X-TerminalArgAppId=--class
+X-TerminalArgDir=--working-directory
+X-TerminalArgHold=--hold
+EOF
+
   if [ ! -e "$HOME/.local/share/applications/kitty-open.desktop" ]; then
     ln -s "$HOME/.local/kitty.app/share/applications/kitty-open.desktop" \
           "$HOME/.local/share/applications/kitty-open.desktop"
@@ -46,13 +67,19 @@ set_kitty_as_default_terminal() {
   echo "==> Setting kitty as the default terminal emulator"
   mkdir -p "$HOME/.config"
 
-  local list_file="$HOME/.config/ubuntu-xdg-terminals.list"
-  if [ -f "$list_file" ] && [ "$(head -n 1 "$list_file")" = "kitty.desktop" ]; then
-    echo "  -> kitty already set as default terminal"
-    return 0
-  fi
+  _write_terminal_list() {
+    local file="$1"
+    if [ -f "$file" ] && [ "$(head -n 1 "$file")" = "kitty.desktop" ]; then
+      return 0
+    fi
+    printf '%s\n' "kitty.desktop" > "$file"
+  }
 
-  printf '%s\n' "kitty.desktop" > "$list_file"
+  # Prefer the Ubuntu-specific list, with fallbacks for plain GNOME/other DEs.
+  _write_terminal_list "$HOME/.config/ubuntu-xdg-terminals.list"
+  _write_terminal_list "$HOME/.config/gnome-xdg-terminals.list"
+  _write_terminal_list "$HOME/.config/xdg-terminals.list"
+
   echo "  -> kitty set as default terminal (log out/in to take full effect)"
 }
 

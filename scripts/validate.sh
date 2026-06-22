@@ -85,8 +85,23 @@ check_bashrc_zsh_switch() {
 }
 
 check_kitty_default_terminal() {
+  local ok=1
   local list_file="$HOME/.config/ubuntu-xdg-terminals.list"
   if [ -f "$list_file" ] && [ "$(head -n 1 "$list_file")" = "kitty.desktop" ]; then
+    :
+  else
+    ok=0
+  fi
+
+  if [ -f "$HOME/.local/share/applications/kitty.desktop" ]; then
+    if ! grep -qE "^TryExec=$HOME/.local/kitty.app/bin/kitty$" "$HOME/.local/share/applications/kitty.desktop"; then
+      ok=0
+    fi
+  else
+    ok=0
+  fi
+
+  if [ "$ok" -eq 1 ]; then
     echo "[OK] kitty is set as the default terminal emulator"
   else
     echo "[FAIL] kitty is not set as the default terminal emulator"
