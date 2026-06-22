@@ -20,6 +20,7 @@ main() {
   echo "==> Starting workstation setup"
 
   install_apt_packages
+  configure_docker_group
   install_snaps
   apply_dotfiles
   install_kitty_env

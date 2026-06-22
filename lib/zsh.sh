@@ -65,9 +65,30 @@ set_zsh_default() {
   fi
 }
 
+enable_zsh_for_bash() {
+  echo "==> Configuring bash to launch zsh for interactive shells"
+  local bashrc="$HOME/.bashrc"
+  local marker="# ws-setup: auto-switch to zsh"
+
+  if [ -f "$bashrc" ] && grep -q "$marker" "$bashrc"; then
+    echo "  -> .bashrc already switches to zsh"
+    return 0
+  fi
+
+  {
+    echo ""
+    echo "$marker"
+    echo "if [[ \$- == *i* ]] && [ -z \"\${ZSH_VERSION:-}\" ] && command -v zsh >/dev/null 2>&1; then"
+    echo "  exec zsh -l"
+    echo "fi"
+  } >> "$bashrc"
+  echo "  -> appended zsh launcher to .bashrc"
+}
+
 install_zsh() {
   install_ohmyzsh
   install_zsh_plugins
   install_starship
   set_zsh_default
+  enable_zsh_for_bash
 }

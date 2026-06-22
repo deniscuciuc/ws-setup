@@ -66,6 +66,24 @@ check_zsh_plugin() {
   fi
 }
 
+check_docker_group() {
+  if getent group docker | cut -d: -f4 | tr ',' '\n' | grep -qx "$(whoami)"; then
+    echo "[OK] user is in the docker group"
+  else
+    echo "[FAIL] user is not in the docker group"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
+check_bashrc_zsh_switch() {
+  if [ -f "$HOME/.bashrc" ] && grep -q 'ws-setup: auto-switch to zsh' "$HOME/.bashrc"; then
+    echo "[OK] .bashrc switches interactive shells to zsh"
+  else
+    echo "[FAIL] .bashrc is not configured to switch to zsh"
+    ERRORS=$((ERRORS + 1))
+  fi
+}
+
 check_kitty_default_terminal() {
   local list_file="$HOME/.config/ubuntu-xdg-terminals.list"
   if [ -f "$list_file" ] && [ "$(head -n 1 "$list_file")" = "kitty.desktop" ]; then
@@ -95,6 +113,7 @@ check_command codex
 check_command kimi
 
 check_default_shell_zsh
+check_bashrc_zsh_switch
 check_ohmyzsh
 check_zsh_plugin zsh-autosuggestions
 check_zsh_plugin zsh-syntax-highlighting
@@ -109,6 +128,8 @@ check_package zsh
 check_package git
 check_package neovim
 check_package bat
+
+check_docker_group
 
 if command -v snap >/dev/null 2>&1; then
   check_snap code

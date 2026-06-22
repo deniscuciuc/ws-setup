@@ -37,7 +37,7 @@
 - [ ] Sign into communication apps: Discord, Telegram, Thunderbird.
 - [ ] Sign into productivity apps: Spotify, Figma, OnlyOffice.
 - [ ] Install any paid/proprietary software not covered by apt/snap.
-- [ ] Log out and back in (or reboot) so zsh and kitty defaults take effect.
+- [ ] Log out and back in (or reboot) so the docker group, zsh default shell, and kitty default terminal take effect.
 - [ ] Run `chezmoi diff` to confirm dotfiles are applied.
 - [ ] Reboot the machine.
 

@@ -34,3 +34,20 @@ install_apt_packages() {
 
   echo "==> apt packages installed"
 }
+
+configure_docker_group() {
+  echo "==> Adding user to the docker group"
+  local current_user
+  current_user="$(whoami)"
+
+  if getent group docker >/dev/null 2>&1; then
+    if getent group docker | cut -d: -f4 | tr ',' '\n' | grep -qx "$current_user"; then
+      echo "  -> user already in docker group"
+    else
+      sudo usermod -aG docker "$current_user"
+      echo "  -> added $current_user to docker group (log out and back in for it to take effect)"
+    fi
+  else
+    echo "  -> WARNING: docker group not found, skipping"
+  fi
+}

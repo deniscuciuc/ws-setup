@@ -20,11 +20,11 @@ cd ~/.local/share/ws-setup
 ## What it does
 
 1. Installs `git`, `curl`, and `software-properties-common`.
-2. Installs curated apt packages (including Docker repo setup).
+2. Installs curated apt packages (including Docker repo setup) and adds your user to the `docker` group.
 3. Installs curated snap packages.
 4. Installs chezmoi and applies `deniscuciuc/dotfiles`.
 5. Installs kitty to `~/.local/kitty.app`, exposes it on `PATH`, and sets it as the default terminal emulator.
-6. Installs and configures zsh: Oh My Zsh, custom plugins, Starship prompt, and sets zsh as the default login shell.
+6. Installs and configures zsh: Oh My Zsh, custom plugins, Starship prompt, sets zsh as the default login shell, and makes interactive bash shells launch zsh.
 7. Installs developer tools (nvm, Node, pnpm) and AI coding assistants (GitHub Copilot `gh` extension, GitHub Copilot CLI, Claude Code, Codex CLI, Kimi Code CLI).
 8. Writes `~/Desktop/SETUP_CHECKLIST.md` with manual post-install steps.
 
