@@ -33,7 +33,7 @@ Optional tools:
 
 Ansible comes from Ubuntu; projects requiring another release can isolate it with uv. SOPS/age need project recipients and a separately backed-up private key. Trivy downloads its vulnerability database on first scan; setup does not launch scans. These modules create no inventories, credentials or background services.
 
-Wireshark initially has no unprivileged live-capture access. Open existing `.pcapng` files normally. If you need live capture, run `sudo dpkg-reconfigure wireshark-common`, select the distribution's non-root capture option, then `sudo usermod -aG wireshark "$USER"` and log in again. Run the GUI as your normal user.
+The opt-in diagnostics installer enables Ubuntu’s non-root capture configuration and adds your account to the `wireshark` group. Log out fully and back in after installation, then run the GUI as your normal user. Rerunning `./setup.sh --only diagnostics` also repairs older installations that disabled capture. `./setup.sh doctor --only diagnostics` checks group membership and dumpcap capabilities.
 
 ## Which system tool to use
 
@@ -73,3 +73,7 @@ Review APT's removal summary; do not use purge or autoremove as part of this mig
 Use `python3 scripts/lock-assets.py --only gitkraken,discord,tofu,yq,just,sops,trivy --write` in Linux, inspect the lock diff, then test before distributing it. The resolver records the vendor's final redirect (currently versioned for both GitKraken and Discord). If upstream replaces the bytes, the checksum refuses the download. Refresh the reviewed lock instead of bypassing verification. `setup.sh update` uses the reviewed lock and does not resolve latest versions itself. An unqualified update includes all previously managed modules, including opt-ins; `--only` restricts it.
 
 Sources: [GitKraken installation](https://support.gitkraken.com/gitkraken-client/how-to-install/), [Discord downloads](https://discord.com/download), [Cloudflare packages](https://pkg.cloudflare.com/), [OpenTofu releases](https://github.com/opentofu/opentofu/releases), [yq](https://github.com/mikefarah/yq), [just](https://just.systems/man/en/), [SOPS](https://github.com/getsops/sops), [Trivy](https://github.com/aquasecurity/trivy).
+
+### DBeaver startup on Ubuntu 26.04
+
+DBeaver 26.2.0 can report a fatal Java error while its native GTK splash screen crashes in `gtk_widget_realize`. The bundled Java itself runs. The database-gui installer writes a user desktop entry and `~/.local/bin/dbeaver` wrapper using `-nosplash`; it preserves the existing workspace and credentials. Immediate workaround: `dbeaver -nosplash`. See [upstream issue #41998](https://github.com/dbeaver/dbeaver/issues/41998), which also reports the problem with Snap; switching to the App Center package is not a confirmed fix.

@@ -32,7 +32,7 @@ apps = {
 }
 if not args.native:
     apps.update({"Podman Desktop": ["flatpak", "run", "io.podman_desktop.PodmanDesktop"],
-                 **{name: ["snap", "run", name] for name in ["todoist", "telegram-desktop", "spotify", "bitwarden", "redisinsight"]}})
+                 **{name: ["snap", "run", name] for name in ["todoist", "telegram-desktop", "spotify", "bitwarden", "redisinsight", "thunderbird"]}})
 if args.only:
     if args.only not in apps:
         parser.error("Unknown application name")
@@ -48,7 +48,7 @@ def windows():
 
 results = {}
 patterns_extra = {"GitKraken": "gitkraken", "Discord": "discord", "ONLYOFFICE": "onlyoffice|desktopeditors"}
-patterns = {"Brave": "brave", "VS Code": 'visual studio code|"code"', "Claude Desktop": "claude", "ChatGPT": "chatgpt", "DBeaver": "dbeaver", "Compass": "compass", "Bruno": "bruno", "Kitty": "kitty", "Steam": "steam", "Podman Desktop": "podman", "todoist": "todoist", "telegram-desktop": "telegram", "spotify": "spotify", "bitwarden": "bitwarden", "redisinsight": "redis"}
+patterns = {"Brave": "brave", "VS Code": 'visual studio code|"code"', "Claude Desktop": "claude", "ChatGPT": "chatgpt", "DBeaver": "dbeaver", "Compass": "compass", "Bruno": "bruno", "Kitty": "kitty", "Steam": "steam", "Podman Desktop": "podman", "todoist": "todoist", "telegram-desktop": "telegram", "spotify": "spotify", "bitwarden": "bitwarden", "redisinsight": "redis", "thunderbird": "thunderbird"}
 
 
 def matches(name, window):

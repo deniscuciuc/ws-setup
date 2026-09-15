@@ -47,7 +47,7 @@ For a service that works inside a container but not on the host, check its publi
 
 ## Packet capture, only when needed
 
-Opt into `./setup.sh --only diagnostics` for **Wireshark** (GUI) and **TShark** (CLI). They decode packet captures to inspect protocol behavior. Open a known capture file before configuring live capture. The installer does not grant capture privileges to your account; [TOOLS.md](../TOOLS.md) explains the distribution-supported opt-in.
+Opt into `./setup.sh --only diagnostics` for **Wireshark** (GUI) and **TShark** (CLI). They decode packet captures to inspect protocol behavior. The diagnostics installer enables live capture through Ubuntu’s `wireshark` group. Log out fully and back in before capturing; [TOOLS.md](../TOOLS.md) explains verification and repair.
 
 Captures can contain traffic and credentials from applications. Keep them out of shared repositories unless reviewed and sanitized. Use the normal-user GUI rather than launching the entire desktop application as root.
 

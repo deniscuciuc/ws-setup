@@ -24,6 +24,28 @@ def bash(script, **kwargs):
 
 
 class Helpers(unittest.TestCase):
+    def test_diagnostics_repairs_existing_install_and_adds_only_missing_group(self):
+        for groups in ["tester sudo", "tester sudo wireshark"]:
+            result = bash(r'''
+set -euo pipefail
+source lib/modules.sh
+sudo() {
+  printf '%s\n' "$*"
+  if [[ $1 == debconf-set-selections ]]; then cat; fi
+}
+apt_manifest() { printf 'apt %s\n' "$1"; }
+pending() { :; }
+id() {
+  if [[ $1 == -un ]]; then echo tester; else echo "$TEST_GROUPS"; fi
+}
+install_diagnostics
+''', env=dict(os.environ, TEST_GROUPS=groups))
+            self.assertEqual(result.returncode, 0, result.stderr)
+            calls = result.stdout.splitlines()
+            self.assertIn('wireshark-common wireshark-common/install-setuid boolean true', calls)
+            self.assertGreater(calls.index('env DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common'), calls.index('apt diagnostics'))
+            self.assertEqual('usermod -aG wireshark tester' in calls, 'wireshark' not in groups)
+
     def test_modules_resolve_dependencies_in_order(self):
         result = bash('source lib/common.sh; source lib/catalog.sh; PROFILE=core; ONLY=desktop; resolve_modules; printf "%s\\n" "${SELECTED[@]}"')
         self.assertEqual(result.returncode, 0, result.stderr)

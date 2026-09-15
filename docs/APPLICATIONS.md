@@ -20,15 +20,15 @@ Verified documentation date: 2026-09-15. A package being downloadable is not the
 | apps | Brave, VS Code, Claude Desktop, Steam, ONLYOFFICE | Official signed vendor APT repositories; keys are checksum-pinned; `packages/apps.txt` |
 | apps | GitKraken, Discord | Checksum-locked official vendor `.deb` downloads |
 | apps | OpenAI ChatGPT desktop with Codex | Checksum-pinned official bootstrap `.deb`, then vendor's signed APT repository |
-| apps | Todoist, Telegram, Spotify, Bitwarden, RedisInsight | Stable Snap packages linked/recommended by vendors |
-| database-gui | DBeaver Community | Official signed DBeaver APT repository; `packages/database-gui.txt` |
+| apps | Todoist, Telegram, Spotify, Bitwarden, RedisInsight, [Thunderbird](https://snapcraft.io/thunderbird) | Stable Snap packages linked/recommended by vendors |
+| database-gui | DBeaver Community | Official signed DBeaver APT repository with bundled Java; `packages/database-gui.txt`; launchers use `-nosplash` for the Ubuntu GTK startup crash |
 | database-gui | MongoDB Compass, Bruno | Locked official GitHub `.deb` releases |
 | desktop | Kitty, Flatpak, GNOME Disks, Disk Usage Analyzer | Ubuntu APT |
 | tools | cloudflared | Official signed Cloudflare APT repository |
 | tools | OpenTofu, Mike Farah yq, just | Locked official upstream releases |
 | tools | Skopeo, NetHogs, Nmap, iperf3, duf | Ubuntu APT; `packages/tools.txt` |
 | devops (optional) | age, Ansible; SOPS, Trivy | Ubuntu APT; locked upstream binaries respectively |
-| diagnostics (optional) | Wireshark, TShark | Ubuntu APT, no automatic capture privilege grant |
+| diagnostics (optional) | Wireshark, TShark | Ubuntu APT; enables capture for the installing user via the wireshark group (new login required) |
 | maintenance | libnotify-bin, daily health/backup and weekly integrity timers | Ubuntu APT notification client; repository systemd user units; dotfiles helpers |
 | desktop | Podman Desktop | User Flatpak from Flathub, per upstream instructions |
 | desktop | JetBrainsMono Nerd Font | Locked Nerd Fonts release |

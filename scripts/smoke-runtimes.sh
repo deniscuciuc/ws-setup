@@ -18,6 +18,15 @@ for version in 11.17.0 11.21.0; do
     pnpm --version | grep -Fx "$version"
   )
 done
+# A project Node override must retain Corepack's packageManager selection.
+mkdir node-override
+printf '24.21.0\n' >node-override/.node-version
+printf '{"private":true,"packageManager":"pnpm@11.17.0"}\n' >node-override/package.json
+(
+  cd node-override
+  node --version | grep -Fx v24.21.0
+  pnpm --version | grep -Fx 11.17.0
+)
 claude --version
 codex --version
 mongosh --version

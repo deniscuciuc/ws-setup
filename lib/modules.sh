@@ -113,14 +113,27 @@ install_apps() {
   if installed brave-browser; then
     if snap list firefox >/dev/null 2>&1; then sudo snap remove firefox; fi
   fi
-  pending 'Sign in to Brave sync, Bitwarden, Todoist, Telegram, Spotify, Steam, Claude Desktop and ChatGPT. Linux AI desktops have preview limitations.'
+  pending 'Sign in to Brave sync, Bitwarden, Todoist, Telegram, Spotify, Steam, Claude Desktop and ChatGPT; configure mail accounts in Thunderbird. Linux AI desktops have preview limitations.'
   pending 'If using Claude Cowork, enable firmware virtualization and log in again for kvm group membership.'
+}
+
+configure_dbeaver_launcher() {
+  # Ubuntu 26.04 GTK crashes in getSplashShell on first launch (#41998).
+  # Keep the vendor desktop metadata and bundled JRE; skip only the splash.
+  sed '/^Exec=/ s|/usr/share/dbeaver-ce/dbeaver|/usr/share/dbeaver-ce/dbeaver -nosplash|' \
+    /usr/share/applications/dbeaver-ce.desktop | \
+    write_user_file "$HOME/.local/share/applications/dbeaver-ce.desktop"
+  write_user_file "$HOME/.local/bin/dbeaver" 755 <<'EOF'
+#!/usr/bin/env bash
+exec /usr/bin/dbeaver -nosplash "$@"
+EOF
 }
 
 install_database_gui() {
   add_repository dbeaver https://dbeaver.io/debs/dbeaver-ce / ''
   sudo apt-get update
   apt_manifest database-gui
+  configure_dbeaver_launcher
   install_asset compass
   install_asset bruno
   pending 'Open DBeaver, Compass, RedisInsight and Bruno; import connection settings without committing passwords. Some vendors do not yet list Ubuntu 26.04 in their support matrix.'
@@ -145,7 +158,12 @@ install_devops() {
 }
 
 install_diagnostics() {
-  echo 'wireshark-common wireshark-common/install-setuid boolean false' | sudo debconf-set-selections
+  echo 'wireshark-common wireshark-common/install-setuid boolean true' | sudo debconf-set-selections
   apt_manifest diagnostics
-  pending 'Wireshark and TShark are installed without granting packet-capture privileges. See docs/TOOLS.md for capture setup.'
+  # Reconfigure even when APT leaves an already installed package unchanged.
+  sudo env DEBIAN_FRONTEND=noninteractive dpkg-reconfigure wireshark-common
+  if ! id -nG "$(id -un)" | tr ' ' '\n' | grep -qx wireshark; then
+    sudo usermod -aG wireshark "$(id -un)"
+  fi
+  pending 'Wireshark capture is enabled for your account. Log out fully and back in before live capture; run the GUI as your normal user.'
 }

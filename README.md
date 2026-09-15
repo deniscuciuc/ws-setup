@@ -50,7 +50,7 @@ Core includes native Podman and therefore needs a real systemd user login. Conta
 
 Read the [application catalog](docs/APPLICATIONS.md), [customization/update guide](docs/CUSTOMIZATION.md), [Podman guide](docs/PODMAN.md), and [hardware/performance guide](docs/PERFORMANCE.md). Shell shortcuts and Linux backup setup live in the dotfiles repository.
 
-GitKraken, Discord and ONLYOFFICE are included. DBeaver is listed explicitly in `packages/database-gui.txt`. The workstation also includes Cloudflare Tunnel, OpenTofu and system/network utilities. See the [tool guide](docs/TOOLS.md) for practical commands, project-local Wrangler, and opt-in `devops`/`diagnostics` modules.
+GitKraken, Discord, ONLYOFFICE and Thunderbird are included. DBeaver is listed explicitly in `packages/database-gui.txt`. The workstation also includes Cloudflare Tunnel, OpenTofu and system/network utilities. See the [tool guide](docs/TOOLS.md) for practical commands, project-local Wrangler, and opt-in `devops`/`diagnostics` modules.
 
 Bitwarden CLI is included even in core. Follow [SSH migration](docs/SSH_MIGRATION.md) to move existing Windows keys into your vault and use the desktop SSH agent on Ubuntu.
 

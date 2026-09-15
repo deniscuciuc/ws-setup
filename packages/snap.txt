@@ -4,3 +4,4 @@ telegram-desktop
 spotify
 bitwarden
 redisinsight
+thunderbird

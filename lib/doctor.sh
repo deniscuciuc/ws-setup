@@ -76,6 +76,13 @@ doctor() {
           diagnostics)
             check_command wireshark
             check_command tshark
+            if id -nG "$(id -un)" | tr ' ' '\n' | grep -qx wireshark; then
+              ok 'Account belongs to wireshark group'
+              if ! id -nG | tr ' ' '\n' | grep -qx wireshark; then note 'Log out fully and back in to activate capture group membership.'; fi
+            else bad 'Account lacks wireshark group; rerun diagnostics install'; fi
+            if command -v getcap >/dev/null && getcap /usr/bin/dumpcap | grep -q 'cap_net_admin' && getcap /usr/bin/dumpcap | grep -q 'cap_net_raw'; then
+              ok 'dumpcap capture capabilities'
+            else bad 'dumpcap capture capabilities missing; rerun diagnostics install'; fi
             ;;
         esac
         ;;
