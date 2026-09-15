@@ -1,0 +1,4 @@
+postgresql-client
+default-mysql-client
+sqlite3
+redis-tools

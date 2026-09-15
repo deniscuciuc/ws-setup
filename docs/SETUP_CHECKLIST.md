@@ -1,46 +1,23 @@
-# New Laptop Setup Checklist
+# Finish your Ubuntu workstation
 
-## Before provisioning
-- [ ] Back up files not stored in cloud storage.
-- [ ] Create an Ubuntu 26.04 bootable USB.
-- [ ] Ensure your password manager (Bitwarden) is accessible from another device.
-- [ ] Note down any license keys for paid software.
+The installer also writes a run-specific report to `~/.local/state/ws-setup/latest-report.md`. Resolve failures there before this checklist.
 
-## During provisioning
-- [ ] Connect the new laptop to the internet.
-- [ ] Open a terminal and run:
-      ```bash
-      curl -fsSL -o /tmp/bootstrap.sh https://github.com/deniscuciuc/ws-setup/raw/main/bootstrap.sh
-      bash /tmp/bootstrap.sh
-      ```
-- [ ] Enter your sudo password when prompted.
-- [ ] Wait for the provisioning script to complete.
+- [ ] Reboot after graphics/package updates. Complete Secure Boot enrollment if Ubuntu requests it.
+- [ ] Start Ubuntu's terminal: Bash prompt, history search and navigation work. Open Kitty and VS Code's terminal too.
+- [ ] Confirm Brave is default and restore browser sync/Bitwarden access.
+- [ ] Import SSH/GPG material from the encrypted backup with appropriate permissions. Run `gh auth login` and `glab auth login`.
+- [ ] Follow [Bitwarden SSH migration](SSH_MIGRATION.md), compare public fingerprints, enable the desktop agent and test a representative host before removing Windows.
+- [ ] Sign in to Claude Code, Codex CLI, Claude Desktop and ChatGPT desktop. Check that each can open a local project.
+- [ ] Sign in to Todoist, Telegram, Spotify, Bitwarden and Steam.
+- [ ] Open GitKraken and Discord; verify Git provider access, audio and screen sharing.
+- [ ] Open/save representative documents in ONLYOFFICE, set document associations, then remove preinstalled LibreOffice applications using [TOOLS.md](TOOLS.md).
+- [ ] Verify Cloudflare access and project-local Wrangler where needed; tunnels are not started by setup.
+- [ ] Open Podman Desktop and confirm that it sees the same native rootless containers as `podman ps`.
+- [ ] Open DBeaver, Compass, RedisInsight and Bruno; restore connection profiles without copying secrets into Git.
+- [ ] Restore projects and rebuild dependencies. Verify the required Node/pnpm/Python/.NET versions per project.
+- [ ] Run `./setup.sh doctor`, `bash scripts/smoke-runtimes.sh` and `bash scripts/smoke-containers.sh`.
+- [ ] Test actual project Compose stacks and database restores using [PODMAN.md](PODMAN.md).
+- [ ] Check NVIDIA, audio, networking, displays, suspend/resume and selected Steam games.
+- [ ] Configure the external backup; complete a backup, integrity check and test restore.
 
-## After provisioning
-- [ ] Import your SSH private key from your backup or password manager.
-- [ ] Import your GPG key.
-- [ ] Run `gh auth login` and authenticate with GitHub.
-- [ ] Authenticate the AI coding assistants (login/API keys cannot be automated):
-      - `gh auth login` (if the Copilot `gh` extension wasn't installed automatically, also run `gh extension install github/gh-copilot --pin v1.2.0`)
-      - `gh copilot explain "hello"` to verify the Copilot extension is signed in
-      - `claude` and follow the browser login, or set `ANTHROPIC_API_KEY`
-      - `codex` and follow the browser login, or set `OPENAI_API_KEY`
-      - `kimi` then run `/login` in the TUI, or set a Moonshot API key
-- [ ] Create `~/.config/copilot/deepseek.env` if you use the Copilot DeepSeek helper in `.zshrc`.
-- [ ] Verify core developer runtimes:
-      - `node -v` should print `v26.3.0`
-      - `pnpm -v` should print `11.5.2`
-      - `dotnet --version` should print `10.0.109`
-- [ ] Open Firefox/Chrome and sign in to sync bookmarks, passwords, and extensions.
-- [ ] Sign into the Bitwarden browser extension.
-- [ ] Configure Syncthing and pair it with your other devices.
-- [ ] Sign into communication apps: Discord, Telegram, Thunderbird.
-- [ ] Sign into productivity apps: Spotify, Figma, OnlyOffice.
-- [ ] Install any paid/proprietary software not covered by apt/snap.
-- [ ] Log out and back in (or reboot) so the docker group, zsh default shell, and kitty default terminal take effect.
-- [ ] Run `chezmoi diff` to confirm dotfiles are applied.
-- [ ] Reboot the machine.
-
-## Optional / per machine
-- [ ] Uncomment NVIDIA/CUDA packages in `packages/apt.txt` and re-run the script if the new laptop has an NVIDIA GPU.
-- [ ] Adjust GNOME settings, themes, keyboard shortcuts, and touchpad preferences manually.
+Firmware settings, disk encryption, credentials and account logins are the remaining manual steps. Keep the Windows backup until this checklist and the release tests pass.

@@ -1,0 +1,7 @@
+kitty
+gnome-disk-utility
+baobab
+flatpak
+wl-clipboard
+xdg-utils
+desktop-file-utils

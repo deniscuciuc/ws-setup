@@ -1,0 +1,4 @@
+# Optional; no services or account credentials are configured.
+age
+ansible
+# Locked upstream assets: sops, trivy.

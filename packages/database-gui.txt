@@ -1,0 +1,4 @@
+# Official DBeaver APT repository, configured by database-gui.
+dbeaver-ce
+# Locked .deb assets: mongodb-compass and bruno (assets.lock.json).
+# RedisInsight uses the vendor Snap, listed in snap.txt.

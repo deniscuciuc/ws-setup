@@ -1,23 +1,6 @@
-# Format: name [classic]
-# Development tools
-code classic
-dbeaver-ce classic
-glab
-redisinsight
-
-# Browsers and communication
-bitwarden
-discord
-firefox
+# Official/vendor-linked packages, stable channel.
+todoist
 telegram-desktop
-thunderbird
-
-# Productivity and media
-figma-linux
-onlyoffice-desktopeditors
-organize-my-files
 spotify
-steam
-
-# Games
-0ad
+bitwarden
+redisinsight

@@ -1,0 +1,266 @@
+{
+  "architecture": "amd64",
+  "assets": {
+    "blesh": {
+      "binaries": {},
+      "kind": "blesh",
+      "sha256": "bdcdcfff216495403adf82a701fe41675f64b64644dc77caabd3e015871ebd61",
+      "url": "https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3-2.tar.xz",
+      "verification": "maintainer-hashed-https",
+      "version": "v0.4.0-devel3"
+    },
+    "brave-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "c85e85aa3d1783ffaa649ee8dbbc22af7f87192d304602d37e3018226b394788",
+      "url": "https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "bruno": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "164f5181df081e493229306f00f1b68772a544c1ebc22c46f0eb6836f8a251f8",
+      "url": "https://github.com/usebruno/bruno/releases/download/v4.1.0/bruno_4.1.0_amd64_linux.deb",
+      "verification": "github-release-digest",
+      "version": "v4.1.0"
+    },
+    "bw": {
+      "binaries": {
+        "bw": "bw"
+      },
+      "kind": "zip",
+      "sha256": "367f618e9fcccaac4980ec12c7bafd01df739b5f3cb1af31bc9045cf75eea1d6",
+      "url": "https://github.com/bitwarden/clients/releases/download/cli-v2026.8.0/bw-linux-2026.8.0.zip",
+      "verification": "github-release-digest",
+      "version": "cli-v2026.8.0"
+    },
+    "chatgpt": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "10ed0c1a880b9975d1f185bf7911a7f514e06b9863cd4ed9561d40063617c854",
+      "url": "https://persistent.oaistatic.com/codex-app-prod/linux/deb/pool/main/c/chatgpt/chatgpt_26.908.70816_amd64.deb",
+      "verification": "maintainer-hashed-https",
+      "version": "26.908.70816"
+    },
+    "chezmoi": {
+      "binaries": {
+        "chezmoi": "chezmoi"
+      },
+      "kind": "tar",
+      "sha256": "a2be1b8bcdf06c6f173e070bb3ddbcc52c50478fe9b57f6e6c63d15c7cff4f03",
+      "url": "https://github.com/twpayne/chezmoi/releases/download/v2.72.2/chezmoi_2.72.2_linux_amd64.tar.gz",
+      "verification": "github-release-digest",
+      "version": "v2.72.2"
+    },
+    "claude": {
+      "binaries": {
+        "": "claude"
+      },
+      "kind": "binary",
+      "sha256": "6c8818fa22187aa555c242be4abbacc44d6b71a32ac9631ee7b2b5d12f51f752",
+      "url": "https://downloads.claude.ai/claude-code-releases/2.1.236/linux-x64/claude",
+      "verification": "vendor-manifest",
+      "version": "2.1.236"
+    },
+    "claude-desktop-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "bd70a5e4a268002704024ceba7f8446024114e94f3f0bdd11c23a9e592be81c6",
+      "url": "https://downloads.claude.ai/claude-desktop/key.asc",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "cloudflared-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "1bd95f4082b320d541bee351560fc2765aa9f9cd8efa4c9e32135e63f252721d",
+      "url": "https://pkg.cloudflare.com/cloudflare-main.gpg",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "codex": {
+      "binaries": {
+        "codex-x86_64-unknown-linux-musl": "codex"
+      },
+      "kind": "tar",
+      "sha256": "d7e18b2597ae8f242f5f31ee9e90deef48dbc9edd634d9868fb6435d08c07f02",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.154.0/codex-x86_64-unknown-linux-musl.tar.gz",
+      "verification": "github-release-digest",
+      "version": "rust-v0.154.0"
+    },
+    "compass": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "959efc6008d8ded66ff1f771961d2e14012dcdc57abbcf897fa8ee8286f3bcb0",
+      "url": "https://github.com/mongodb-js/compass/releases/download/v1.50.0/mongodb-compass_1.50.0_amd64.deb",
+      "verification": "github-release-digest",
+      "version": "v1.50.0"
+    },
+    "compose": {
+      "binaries": {
+        "": "docker-compose"
+      },
+      "kind": "binary",
+      "sha256": "db1889184726840f75c4f9c001048430d4f25b3be3cb084d3ddd762bc0aed576",
+      "url": "https://github.com/docker/compose/releases/download/v5.5.1/docker-compose-linux-x86_64",
+      "verification": "github-release-digest",
+      "version": "v5.5.1"
+    },
+    "dbeaver-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "4ed8026c636015491be5abd7fc69fc31c9f2626f0d0e4655873e546f5fab7d60",
+      "url": "https://dbeaver.io/debs/dbeaver.gpg.key",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "discord": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "022b1e269bcd1523542fb35b51ae840fdb994d96a8a2245f1c54542b545b2060",
+      "url": "https://stable.dl2.discordapp.net/apps/linux/1.0.158/discord-1.0.158.deb",
+      "verification": "maintainer-hashed-https",
+      "version": "1.0.158"
+    },
+    "font": {
+      "binaries": {},
+      "kind": "font",
+      "sha256": "04d5e8f903693f9dd13e16f867e994834e681eb3c72c0d337a770dcda09010cf",
+      "url": "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/JetBrainsMono.tar.xz",
+      "verification": "github-release-digest",
+      "version": "v3.5.1"
+    },
+    "gitkraken": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "d10f616193fb9722bb7afe2f34d348b60ac1076d4edc569acd18428ff0bcb4f3",
+      "url": "https://release.gitkraken.dev/gkd/production/normal/linux/x64/12.4.1/3Ijh8Ndf4gOZeP1CIUuITpWIH44/gitkraken-amd64.deb",
+      "verification": "maintainer-hashed-https",
+      "version": "12.4.1"
+    },
+    "just": {
+      "binaries": {
+        "just": "just"
+      },
+      "kind": "tar",
+      "sha256": "4a5cc2f53e6f0f8c59092a6cc38291eb729d46a7dd95d3ae582008881b84931d",
+      "url": "https://github.com/casey/just/releases/download/1.58.0/just-1.58.0-x86_64-unknown-linux-musl.tar.gz",
+      "verification": "github-release-digest",
+      "version": "1.58.0"
+    },
+    "mise": {
+      "binaries": {
+        "": "mise"
+      },
+      "kind": "binary",
+      "sha256": "ff182b17e78d2ae09b5ae3ff3c032eed061e6c2a6b2d4a03ce959d4d74c4b7dd",
+      "url": "https://github.com/jdx/mise/releases/download/v2026.9.8/mise-v2026.9.8-linux-x64",
+      "verification": "github-release-digest",
+      "version": "v2026.9.8"
+    },
+    "mongosh": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "00d75b8aee343c52a84c7a728008d45f670aa5fd222089e4a71e59f4a79380b1",
+      "url": "https://github.com/mongodb-js/mongosh/releases/download/v2.10.0/mongodb-mongosh_2.10.0_amd64.deb",
+      "verification": "github-release-digest",
+      "version": "v2.10.0"
+    },
+    "onlyoffice-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "35470c0db19bed875fff786a2d65a62cdb056459a2b3e12fd846be96178388e4",
+      "url": "https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "sops": {
+      "binaries": {
+        "": "sops"
+      },
+      "kind": "binary",
+      "sha256": "e5bec3346a873ae91d871550f3e698c1aad962aff462a080e40f25fde17fef6b",
+      "url": "https://github.com/getsops/sops/releases/download/v3.13.3/sops-v3.13.3.linux.amd64",
+      "verification": "github-release-digest",
+      "version": "v3.13.3"
+    },
+    "sqlcmd": {
+      "binaries": {
+        "sqlcmd": "sqlcmd"
+      },
+      "kind": "tar",
+      "sha256": "92516d98c63d99b0994de5b61350c91f6915f9b76f139a59039fbcb225c2e987",
+      "url": "https://github.com/microsoft/go-sqlcmd/releases/download/v1.10.0/sqlcmd-linux-amd64.tar.bz2",
+      "verification": "github-release-digest",
+      "version": "v1.10.0"
+    },
+    "starship": {
+      "binaries": {
+        "starship": "starship"
+      },
+      "kind": "tar",
+      "sha256": "321f0dd7af8340a5f2e6a8fec6538a04f617486f9ec70d878f91c09cd8deef22",
+      "url": "https://github.com/starship/starship/releases/download/v1.26.0/starship-x86_64-unknown-linux-gnu.tar.gz",
+      "verification": "github-release-digest",
+      "version": "v1.26.0"
+    },
+    "steam-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "98e9fc5b108bba854f03021a8ac38a5cbb01c32cb723c37433967c0d5d3db763",
+      "url": "https://repo.steampowered.com/steam/archive/stable/steam.gpg",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "tofu": {
+      "binaries": {},
+      "kind": "deb",
+      "sha256": "345e556f8902dde941305bf59075cf37b0d108cdb25bcc884439eec9a869c4f7",
+      "url": "https://github.com/opentofu/opentofu/releases/download/v1.12.6/tofu_1.12.6_amd64.deb",
+      "verification": "github-release-digest",
+      "version": "v1.12.6"
+    },
+    "trivy": {
+      "binaries": {
+        "trivy": "trivy"
+      },
+      "kind": "tar",
+      "sha256": "2ae6fe3ee734b7fdf11335663e18c75ea12dccc76062f09f164a3b0f8be4371a",
+      "url": "https://github.com/aquasecurity/trivy/releases/download/v0.74.0/trivy_0.74.0_Linux-64bit.tar.gz",
+      "verification": "github-release-digest",
+      "version": "v0.74.0"
+    },
+    "uv": {
+      "binaries": {
+        "uv-x86_64-unknown-linux-gnu/uv": "uv",
+        "uv-x86_64-unknown-linux-gnu/uvx": "uvx"
+      },
+      "kind": "tar",
+      "sha256": "745765a3b6e360ad76743599ae5c42e9278c7edf8bbff9fc76d05bf2623a04dd",
+      "url": "https://github.com/astral-sh/uv/releases/download/0.12.13/uv-x86_64-unknown-linux-gnu.tar.gz",
+      "verification": "github-release-digest",
+      "version": "0.12.13"
+    },
+    "vscode-key": {
+      "binaries": {},
+      "kind": "key",
+      "sha256": "2fa9c05d591a1582a9aba276272478c262e95ad00acf60eaee1644d93941e3c6",
+      "url": "https://packages.microsoft.com/keys/microsoft.asc",
+      "verification": "maintainer-hashed-https",
+      "version": "key-2026-09-15"
+    },
+    "yq": {
+      "binaries": {
+        "": "yq"
+      },
+      "kind": "binary",
+      "sha256": "c5f056448f973ae7d39b5401949648a78f2dc1947d6a8eb65be60d5c504b9385",
+      "url": "https://github.com/mikefarah/yq/releases/download/v4.53.6/yq_linux_amd64",
+      "verification": "github-release-digest",
+      "version": "v4.53.6"
+    }
+  },
+  "resolved_at": "2026-09-15T02:21:38.467676+00:00",
+  "schema": 1
+}

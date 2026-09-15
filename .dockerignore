@@ -1,0 +1,5 @@
+.git
+.worktrees
+worktrees
+__pycache__
+.test-output

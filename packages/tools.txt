@@ -1,0 +1,8 @@
+# cloudflared uses Cloudflare's signed repository; others use Ubuntu.
+cloudflared
+skopeo
+nethogs
+nmap
+iperf3
+duf
+# Locked upstream assets: tofu, Mike Farah yq, just.

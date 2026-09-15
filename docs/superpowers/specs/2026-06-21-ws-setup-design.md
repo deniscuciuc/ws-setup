@@ -1,5 +1,7 @@
 # `ws-setup` Design Specification
 
+> **SUPERSEDED — historical record only.** This describes an earlier workstation and an abandoned Ansible design. Follow [the current README](../../../README.md) and [migration guide](../../MIGRATION.md) for the Windows-to-Ubuntu workstation implementation.
+
 **Goal:** Provide an automated, idempotent provisioning system that can reproduce the current Ubuntu 26.04 developer workstation on a new laptop, with a fallback manual checklist for steps that cannot or should not be automated.
 
 **Target repo:** `github.com/deniscuciuc/ws-setup`  

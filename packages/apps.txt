@@ -1,0 +1,7 @@
+# Vendor APT packages; sources are configured by the apps module.
+brave-browser
+code
+claude-desktop
+steam-launcher
+onlyoffice-desktopeditors
+# Locked standalone .deb assets: chatgpt, gitkraken, discord (assets.lock.json).
