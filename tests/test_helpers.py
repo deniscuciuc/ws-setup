@@ -33,7 +33,7 @@ class Helpers(unittest.TestCase):
             self.assertLess(modules.index(earlier), modules.index(later))
         result = bash('source lib/common.sh; source lib/catalog.sh; PROFILE=workstation; ONLY=""; resolve_modules; printf "%s\\n" "${SELECTED[@]}"')
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(set(result.stdout.splitlines()), {"base", "shell", "dotfiles", "runtimes", "ai", "containers", "database", "apps", "database-gui", "desktop", "drivers", "tools"})
+        self.assertEqual(set(result.stdout.splitlines()), {"base", "shell", "dotfiles", "runtimes", "ai", "containers", "database", "apps", "database-gui", "desktop", "drivers", "tools", "maintenance"})
         result = bash('source lib/common.sh; source lib/catalog.sh; PROFILE=workstation; ONLY=devops,diagnostics; resolve_modules; printf "%s\\n" "${SELECTED[@]}"')
         self.assertEqual(result.stdout.splitlines(), ["base", "devops", "diagnostics"])
 

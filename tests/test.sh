@@ -6,6 +6,6 @@ for script in "${scripts[@]}"; do bash -n "$script"; done
 shellcheck -x -S warning "${scripts[@]}"
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -p 'test_*.py' -v
 if [[ -d ${DOTFILES_SOURCE:-/dotfiles} ]]; then
-  PYTHONDONTWRITEBYTECODE=1 python3 "${DOTFILES_SOURCE:-/dotfiles}/tests/test_dotfiles.py"
+  PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s "${DOTFILES_SOURCE:-/dotfiles}/tests" -p 'test_*.py' -v
 fi
 printf 'Static and regression checks passed. See docs/TESTING.md for integration/desktop tests.\n'

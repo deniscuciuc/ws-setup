@@ -18,7 +18,7 @@ Usage: ./setup.sh [install|plan|doctor|update] [options]
   --help                     Show this help
 
 Modules: base,shell,runtimes,ai,containers,database,apps,database-gui,
-         dotfiles,desktop,drivers,tools,devops,diagnostics
+         dotfiles,desktop,drivers,tools,devops,diagnostics,maintenance
 devops and diagnostics are opt-in; tools belongs to the workstation profile.
 plan and doctor are read-only. Run install/update as your normal user.
 EOF
@@ -68,6 +68,7 @@ preflight() {
   available=$(df -Pk / | awk 'END {print $4}')
   ((available >= required)) || die "Need at least $((required / 1048576)) GiB free on the system filesystem."
   if is_selected containers; then user_systemd || die 'Podman requires a systemd user session. Log in normally and retry.'; fi
+  if is_selected maintenance; then user_systemd || die 'Maintenance timers require a systemd user login session.'; fi
   if is_selected apps || is_selected desktop; then
     desktop_session || die 'Desktop modules require a graphical Ubuntu session. Use --profile core on a server.'
   fi

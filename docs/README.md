@@ -14,6 +14,7 @@ Start with the [Workstation Handbook](handbook/README.md). It explains what is i
 | Run project containers | [Podman](PODMAN.md) |
 | Use Cloudflare, DevOps and diagnostic tools | [Tool guide](TOOLS.md) |
 | Diagnose performance or NVIDIA | [Hardware and performance](PERFORMANCE.md) |
+| Control worktree storage and scheduled jobs | [Storage and maintenance](MAINTENANCE.md) |
 | See what has actually passed validation | [Testing and release gate](TESTING.md) |
 | Understand the original audit | [Audit](AUDIT.md) |
 

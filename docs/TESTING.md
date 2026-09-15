@@ -30,6 +30,8 @@
 | Added native applications | ONLYOFFICE 9.4.0-129, GitKraken 12.4.1, Discord 1.0.158, GNOME Disks and Baobab installed; focused rerun installed nothing new and reused asset receipts |
 | Added GUI launches | ONLYOFFICE created a matching Xvfb window. GitKraken produced no matching window within 40 seconds (then 50 with D-Bus). Discord bootstrap completed but its downloaded client aborted with a sandbox-helper error in the container. Both remain unresolved Desktop VM checks; sandboxing was not disabled |
 | Bitwarden CLI / SSH migration | Native bw 2026.8.0 installed and returned version/status on Ubuntu; Windows read-only inventory found 17 pairs. Synthetic SSH tests cover upload/read-back, reruns, collisions, encrypted/mismatched pairs, stdin handling and public restore. Real authenticated vault transfer and desktop agent use remain pending user sign-in |
+| pnpm worktree storage | pnpm 11.21.0 and 11.17.0: two disposable Git worktrees shared the actual package inode and the second install succeeded offline. Effective preferOffline was true; filesystem probe passed |
+| Maintenance | 31 regression tests total passed. Three systemd user timers validated/activated in Ubuntu; unconfigured jobs skipped successfully. Encrypted backup/check/restore and absent-mount handling passed with the maintenance wrapper; update and doctor passed. Notification deduplication, job locking and failure timestamps covered by regressions |
 | Physical NVIDIA, sound, displays, network, suspend, games | **Pending** |
 | Actual Windows migration backup and database restore | **Pending user data/hardware acceptance** |
 
@@ -71,6 +73,8 @@ docker run --rm \
 Windows PowerShell uses absolute Windows paths for bind sources. Running this test with an existing Docker installation does not change the target Ubuntu choice of Podman.
 
 ## Ubuntu Desktop VM acceptance
+
+Run `bash tests/check-pnpm-sharing.sh` and `PNPM_TEST_VERSION=11.17.0 bash tests/check-pnpm-sharing.sh` to verify actual package hardlinks and an offline worktree install. Run `WS_TEST_MAINTENANCE=1 bash tests/check-backup.sh` in a disposable privileged environment for the wrapper's encrypted backup/check/restore flow. On the physical machine validate laptop AC-power skips, desktop notification delivery and TRIM through encryption; these are not certified by container tests.
 
 For the added tools, run `bash tests/check-tools.sh` after the workstation install. After opting into DevOps, use `bash tests/check-tools.sh --devops`. Test packet capture, Cloudflare authentication and actual infrastructure projects separately. `tests/install-extra-gui.sh` is a disposable-test helper for the new native GUI packages; it does not replace the complete workstation installation.
 

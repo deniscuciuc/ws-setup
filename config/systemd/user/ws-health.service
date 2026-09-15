@@ -1,0 +1,10 @@
+[Unit]
+Description=Workstation disk space and backup freshness check
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/ws-maintenance health
+Nice=10
+IOSchedulingClass=idle
+UMask=0077
+TimeoutStartSec=5min

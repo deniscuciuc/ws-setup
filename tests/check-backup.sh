@@ -37,9 +37,20 @@ bash "$tool" init
   bash "$tool" backup
 )
 bash "$tool" check
+if [[ ${WS_TEST_MAINTENANCE:-} == 1 ]]; then
+  export XDG_STATE_HOME="$work/state"
+  ws-maintenance backup
+  ws-maintenance check
+  [[ -f $XDG_STATE_HOME/ws-maintenance/backup.success && -f $XDG_STATE_HOME/ws-maintenance/check.success ]]
+fi
 bash "$tool" restore latest "$work/restored"
 cmp "$work/data/proof" "$work/restored$work/data/proof"
 sudo umount "$work/disk"
+if [[ ${WS_TEST_MAINTENANCE:-} == 1 ]]; then
+  before=$(stat -c %Y "$XDG_STATE_HOME/ws-maintenance/backup.success")
+  ws-maintenance backup
+  [[ $(stat -c %Y "$XDG_STATE_HOME/ws-maintenance/backup.success") == "$before" ]]
+fi
 if bash "$tool" backup; then
   echo 'Unmounted backup unexpectedly succeeded.' >&2
   exit 1

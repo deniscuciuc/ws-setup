@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-WORKSTATION_MODULES=(base shell dotfiles runtimes ai containers database tools apps database-gui desktop drivers)
+WORKSTATION_MODULES=(base shell dotfiles runtimes ai containers database tools apps database-gui desktop drivers maintenance)
 MODULE_ORDER=("${WORKSTATION_MODULES[@]}" devops diagnostics)
 CORE_MODULES=(base shell runtimes ai containers database dotfiles)
 declare -A DEPENDENCIES=(
@@ -8,6 +8,7 @@ declare -A DEPENDENCIES=(
   ["database-gui"]='base' [dotfiles]='shell' [desktop]='shell apps containers dotfiles'
   [drivers]='apps'
   [tools]='base' [devops]='base' [diagnostics]='base'
+  [maintenance]='dotfiles'
 )
 # shellcheck disable=SC2034
 declare -A DESCRIPTIONS=(
@@ -25,6 +26,7 @@ declare -A DESCRIPTIONS=(
   [tools]='Cloudflare Tunnel, OpenTofu, yq, just and network utilities'
   [devops]='Optional SOPS, age, Ansible and Trivy'
   [diagnostics]='Optional Wireshark and TShark'
+  [maintenance]='Daily storage/backup checks and weekly backup integrity timer'
 )
 
 resolve_modules() {

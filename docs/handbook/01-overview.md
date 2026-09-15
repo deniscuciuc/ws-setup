@@ -24,6 +24,7 @@ Think of provisioning as furnishing the workstation and dotfiles as arranging th
 | `database-gui` | DBeaver, Compass and Bruno | Workstation |
 | `desktop` | Kitty, fonts, GNOME preferences, extensions and Podman Desktop | Workstation |
 | `drivers` | Ubuntu-recommended NVIDIA driver and graphics diagnostics | Workstation |
+| `maintenance` | Daily storage/backup checks and weekly backup integrity checks | Workstation; core can opt in |
 | `devops` | SOPS, age, Ansible and Trivy | Opt-in |
 | `diagnostics` | Wireshark and TShark | Opt-in |
 

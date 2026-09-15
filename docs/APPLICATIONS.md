@@ -29,6 +29,7 @@ Verified documentation date: 2026-09-15. A package being downloadable is not the
 | tools | Skopeo, NetHogs, Nmap, iperf3, duf | Ubuntu APT; `packages/tools.txt` |
 | devops (optional) | age, Ansible; SOPS, Trivy | Ubuntu APT; locked upstream binaries respectively |
 | diagnostics (optional) | Wireshark, TShark | Ubuntu APT, no automatic capture privilege grant |
+| maintenance | libnotify-bin, daily health/backup and weekly integrity timers | Ubuntu APT notification client; repository systemd user units; dotfiles helpers |
 | desktop | Podman Desktop | User Flatpak from Flathub, per upstream instructions |
 | desktop | JetBrainsMono Nerd Font | Locked Nerd Fonts release |
 | drivers | NVIDIA driver + matching 32-bit graphics library | Ubuntu recommended driver resolver; no hard-coded driver branch or CUDA |

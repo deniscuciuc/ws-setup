@@ -16,6 +16,9 @@ Paths below are in your Ubuntu home unless absolute. The dotfiles repository use
 | `~/.config/kitty/` | Terminal font, theme, tabs and keybindings | Dotfiles |
 | `~/.config/starship.toml` | Prompt appearance and modules | Dotfiles |
 | `~/.config/mise/` | Global runtime baseline | Dotfiles; project versions can override |
+| `~/.config/pnpm/config.yaml` | Automatic package imports and offline-cache preference | Dotfiles; project lockfiles remain authoritative |
+| `~/.config/systemd/user/ws-*.timer`, `ws-*.service` | Storage/backup schedules and execution limits | ws-setup maintenance module |
+| `~/.local/state/ws-maintenance/` | Backup/check success markers and alert state | Private runtime state |
 | `~/.config/Code/User/settings.json` | VS Code editing, terminal and container behavior | Dotfiles |
 | `~/.gitconfig` | Portable Git behavior | Dotfiles |
 | `~/.gitconfig.local` | Machine identity/credential overrides | Private, untracked |
@@ -77,6 +80,7 @@ You generally do not configure these individually. They support commands and wor
 | `wl-clipboard` | Wayland clipboard commands: `wl-copy`, `wl-paste` |
 | `xdg-utils` | Desktop/browser/file associations and opening URLs/files |
 | `desktop-file-utils` | Desktop launcher registration/validation support |
+| `libnotify-bin` | Desktop notifications for actionable maintenance conditions |
 | `ubuntu-drivers-common`, `pciutils`, `vulkan-tools`, `mesa-utils` | Driver selection, device identification and graphics diagnostics |
 
 The command-facing base tools are covered in [Terminal](02-terminal.md), [Development](03-development.md), [System/network](06-system-network.md) and [Maintenance](07-maintenance.md). Database packages are client-only: `postgresql-client`, `default-mysql-client`, `sqlite3`, `redis-tools`, plus locked MongoDB and SQL Server clients.

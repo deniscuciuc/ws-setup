@@ -115,6 +115,14 @@ doctor() {
           if command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=name,driver_version --format=csv,noheader; then ok 'NVIDIA driver responds'; else bad 'NVIDIA driver requires attention/reboot'; fi
         else note 'No NVIDIA display adapter visible in this environment'; fi
         ;;
+      maintenance)
+        check_command ws-storage
+        check_command ws-maintenance
+        for command in ws-health ws-backup ws-backup-check; do
+          if systemctl --user is-enabled --quiet "$command.timer" && systemctl --user is-active --quiet "$command.timer"; then ok "$command.timer"; else bad "$command.timer inactive/disabled"; fi
+        done
+        note 'Run ws-storage system to inspect existing security-update/TRIM policies, and ws-maintenance health for disk/backup status.'
+        ;;
     esac
   done
   if [[ -f /var/run/reboot-required ]]; then note 'Reboot required'; fi

@@ -28,6 +28,8 @@ Managed Git defaults use `main` for new repositories, rebase on pull, prune stal
 
 ## Runtime selection
 
+pnpm uses a shared package store and prefers cached packages. Keep worktrees on the store's filesystem and use `ws-storage pnpm . --probe` to verify linking. See [storage/maintenance](../MAINTENANCE.md) for package sharing, backup exclusions and why generated build outputs can still consume space.
+
 | Component | Role | What determines a project's version? |
 |---|---|---|
 | .NET SDK | Compile, test and run .NET applications | Project targets and `global.json`; setup installs .NET 10 from Ubuntu |

@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily workstation health check
+
+[Timer]
+OnCalendar=daily
+OnStartupSec=15min
+RandomizedDelaySec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

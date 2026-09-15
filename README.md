@@ -54,6 +54,8 @@ GitKraken, Discord and ONLYOFFICE are included. DBeaver is listed explicitly in 
 
 Bitwarden CLI is included even in core. Follow [SSH migration](docs/SSH_MIGRATION.md) to move existing Windows keys into your vault and use the desktop SSH agent on Ubuntu.
 
+The workstation's [maintenance module](docs/MAINTENANCE.md) checks disk space, attempts external backups daily and verifies them weekly. pnpm reuses a filesystem-local store; `ws-storage` checks sharing and reports worktree/storage usage. No automated cache or volume deletion is configured.
+
 The [audit summary](docs/AUDIT.md) maps the original problems to implemented changes and remaining migration checks.
 
 ## Results and recovery

@@ -19,6 +19,20 @@ install_shell() {
   install_asset blesh
 }
 
+install_maintenance() {
+  apt_packages libnotify-bin
+  local path timer
+  for path in "$REPO_ROOT"/config/systemd/user/ws-*.service "$REPO_ROOT"/config/systemd/user/ws-*.timer; do
+    write_user_file "$HOME/.config/systemd/user/${path##*/}" <"$path"
+  done
+  systemctl --user daemon-reload
+  for timer in ws-health ws-backup ws-backup-check; do
+    systemctl --user enable --now "$timer.timer"
+  done
+  pending 'Configure the external backup and run ws-backup init once. Timers skip an absent disk; ws-maintenance health reports missing/stale backups. See docs/MAINTENANCE.md.'
+  pending 'Review existing apt-daily/apt-daily-upgrade and fstrim timers with ws-storage system. Encryption discard settings and reboot policies are not changed.'
+}
+
 install_runtimes() {
   apt_packages "dotnet-sdk-$DOTNET_VERSION"
   install_asset mise

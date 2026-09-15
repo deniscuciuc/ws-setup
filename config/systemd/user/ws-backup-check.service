@@ -1,0 +1,11 @@
+[Unit]
+Description=Read and verify encrypted backup data
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/ws-maintenance check
+Nice=15
+IOSchedulingClass=idle
+UMask=0077
+TimeoutStartSec=12h

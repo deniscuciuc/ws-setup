@@ -19,5 +19,6 @@ The installer also writes a run-specific report to `~/.local/state/ws-setup/late
 - [ ] Test actual project Compose stacks and database restores using [PODMAN.md](PODMAN.md).
 - [ ] Check NVIDIA, audio, networking, displays, suspend/resume and selected Steam games.
 - [ ] Configure the external backup; complete a backup, integrity check and test restore.
+- [ ] Review `ws-storage system` and the maintenance timers; run `ws-maintenance backup` after configuring the external disk. Verify `ws-storage pnpm PROJECT --probe` for real agent worktree locations.
 
 Firmware settings, disk encryption, credentials and account logins are the remaining manual steps. Keep the Windows backup until this checklist and the release tests pass.

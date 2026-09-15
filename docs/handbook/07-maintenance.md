@@ -56,7 +56,7 @@ ws-backup restore latest /tmp/new-restore-check
 
 These commands require the configured external disk. `check` reads stored data and can take time. Restore requires a new absolute destination. Compare restored files and restore representative database dumps before trusting recovery.
 
-Backup excludes rebuildable caches and raw live container/database storage; make consistent logical database exports and include their directory. Retention is separate: `ws-backup retention` explains the policy; `ws-backup retention --apply` deliberately expires snapshots and prunes unreferenced data. No recurring backup or retention timer is installed automatically.
+Backup excludes rebuildable caches and raw live container/database storage; make consistent logical database exports and include their directory. Retention is separate: `ws-backup retention` explains the policy; `ws-backup retention --apply` deliberately expires snapshots and prunes unreferenced data. The workstation maintenance module schedules daily backup attempts and weekly integrity checks, with mount protection and low priority. Retention remains manual. See [storage and maintenance](../MAINTENANCE.md) for schedules, controls, alerts and pnpm/worktree diagnostics.
 
 The full instructions are in [dotfiles backup documentation](https://github.com/deniscuciuc/dotfiles/blob/main/docs/BACKUP.md). Keep the backup password separately recoverable; a password stored only inside its own encrypted backup cannot unlock it.
 
